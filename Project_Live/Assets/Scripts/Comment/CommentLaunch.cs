@@ -9,13 +9,12 @@ public class CommentLaunch : MonoBehaviour
 {
     [Header("ステージ")]
     [SerializeField] GameObject stage;
-    //[Header("着地点座標")]
-    //[SerializeField] Transform targetPos;
     [Header("滞空時間")]
     [SerializeField] float flightTime = 2f;
     [Header("移動速度倍率")]
     [SerializeField] float speedRate = 1f;
     private const float gravity = -9.8f;    //重力
+    BoxCollider commentCollider;    //浮遊中は取れないようにするためにコライダーを取得
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +27,10 @@ public class CommentLaunch : MonoBehaviour
         // オブジェクトの高さ分だけY座標を上げる
         float objectHeight = GetObjectHeight(this.gameObject);
         randomTarget.y += objectHeight * 0.5f; // だいたい中心から底面まで半分なので0.5倍
+
+        commentCollider=GetComponent<BoxCollider>();
+
+        commentCollider.enabled = false;    //生成された瞬間はコライダーが無効
 
         StartCoroutine(Launch(randomTarget, flightTime, speedRate, gravity));
     }
@@ -45,7 +48,6 @@ public class CommentLaunch : MonoBehaviour
             return 1f; // 仮に1m扱い
         }
     }
-
     Vector3 GetRandomPointOnCylinderTop(Vector3 center, float radius)
     {
         // 中心からランダムな距離・角度で点を取る
@@ -57,8 +59,6 @@ public class CommentLaunch : MonoBehaviour
 
         return new Vector3(center.x + x, center.y, center.z + z);
     }
-
-
 
     private IEnumerator Launch(Vector3 targetPos, float flightTime, float speedRate, float gravity) //放物移動の関数
     {
@@ -75,5 +75,6 @@ public class CommentLaunch : MonoBehaviour
         }
 
         this.transform.position = targetPos;     //着地点へ微調整
+        commentCollider.enabled = true; //着地したらコライダーを有効にする
     }
 }
