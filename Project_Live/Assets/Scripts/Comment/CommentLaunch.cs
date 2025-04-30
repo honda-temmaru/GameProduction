@@ -13,6 +13,7 @@ public class CommentLaunch : MonoBehaviour
     [SerializeField] float flightTime = 2f;
     [Header("移動速度倍率")]
     [SerializeField] float speedRate = 1f;
+    
     private const float gravity = -9.8f;    //重力
     BoxCollider commentCollider;    //浮遊中は取れないようにするためにコライダーを取得
 
@@ -32,7 +33,7 @@ public class CommentLaunch : MonoBehaviour
 
         commentCollider.enabled = false;    //生成された瞬間はコライダーが無効
 
-        StartCoroutine(Launch(randomTarget, flightTime, speedRate, gravity));
+        StartCoroutine(Launch(randomTarget, flightTime, speedRate, gravity));   //生成されたら放物運動を開始
     }
 
     float GetObjectHeight(GameObject obj)
