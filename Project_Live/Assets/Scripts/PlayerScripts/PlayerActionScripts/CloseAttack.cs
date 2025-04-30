@@ -18,7 +18,7 @@ class ComboStep
 public class CloseAttack : MonoBehaviour
 {
     [Header("コンボ設定")]
-    [SerializeField] List<ComboStep> comboSteps = new List<ComboStep>();    
+    [SerializeField] List<ComboStep> comboSteps = new List<ComboStep>(); 
 
     int currentComboIndex = 0; //現在のコンボ段階を示す変数
     float lastAttackTime = 0f; //最後に攻撃した時間
