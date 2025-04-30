@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Stage
   - GoodSystem
+  - Enemy
   layers:
   - Default
   - TransparentFX
