@@ -7,15 +7,12 @@ using UnityEngine;
 public class CommentGet : MonoBehaviour
 {
     GoodSystem goodSystem;
-    GameObject goodsystem;
-
-    bool getTrigger = false;
+    bool getTrigger = false;    //2重取り防ぎ用のフラグ
 
     // Start is called before the first frame update
     void Start()
     {
-        goodsystem = GameObject.FindWithTag("GoodSystem");
-        goodSystem= goodsystem.GetComponent<GoodSystem>();
+        goodSystem= GameObject.FindWithTag("GoodSystem").GetComponent<GoodSystem>();    //スクリプトGoodSystemの変数を扱うためのおまじない
     }
 
     // Update is called once per frame
@@ -28,10 +25,11 @@ public class CommentGet : MonoBehaviour
     {
         if (getTrigger)
             return;
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))  //Playerに取られたら行われる処理  
         {
+            getTrigger = true;
             Destroy(this.gameObject);
-            goodSystem.GoodNum += 10;
+            goodSystem.GoodNum += 10f;
             Debug.Log("コメントを取得しました");
         }
     }
