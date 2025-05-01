@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1211,7 +1211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b52c673e8e5bbf41a3ca6c9fc2f7c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commentPrefab: {fileID: 397368539798705897, guid: 63887e359ebf6cb4a9592789b98669bb, type: 3}
+  commentPrefab:
+  - {fileID: 397368539798705897, guid: e208f0b548e0d1e43aedd80e670a0897, type: 3}
+  - {fileID: 397368539798705897, guid: abfef64f913a8304dbbd83b1adb2c967, type: 3}
+  - {fileID: 397368539798705897, guid: 130f6fdf55367c14db2b9e08ced874a6, type: 3}
   stage: {fileID: 1716161651}
   spawnInterval:
   - time: 5
