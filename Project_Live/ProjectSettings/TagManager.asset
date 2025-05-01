@@ -7,6 +7,7 @@ TagManager:
   - Stage
   - GoodSystem
   - Enemy
+  - LookPoint
   layers:
   - Default
   - TransparentFX
