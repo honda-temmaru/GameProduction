@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class CommentGet : MonoBehaviour
 {
+    [Header("いいねの最小取得値")]
+    [SerializeField] int minNum = 5;
+    [Header("いいねの最大取得値")]
+    [SerializeField] int maxNum=10;
+
     GoodSystem goodSystem;
     bool getTrigger = false;    //2重取り防ぎ用のフラグ
 
@@ -15,10 +20,9 @@ public class CommentGet : MonoBehaviour
         goodSystem= GameObject.FindWithTag("GoodSystem").GetComponent<GoodSystem>();    //スクリプトGoodSystemの変数を扱うためのおまじない
     }
 
-    // Update is called once per frame
-    void Update()
+    int DesideGoodNumValue(int minNum,int maxNum)
     {
-
+        return Random.Range(minNum,maxNum);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +33,7 @@ public class CommentGet : MonoBehaviour
         {
             getTrigger = true;
             Destroy(this.gameObject);
-            goodSystem.GoodNum += 10f;
+            goodSystem.GoodNum += DesideGoodNumValue(minNum,maxNum);
             Debug.Log("コメントを取得しました");
         }
     }

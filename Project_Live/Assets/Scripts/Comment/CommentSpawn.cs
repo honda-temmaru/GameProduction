@@ -19,7 +19,7 @@ class SpawnInterval //スポーン時間のプロパティ用クラス
 public class CommentSpawn : MonoBehaviour
 {
     [Header("生成するオブジェクト")]
-    [SerializeField] GameObject commentPrefab;
+    [SerializeField] GameObject[] commentPrefab;
     [Header("ステージ")]
     [SerializeField] GameObject stage;
     [Header("スポーン時間設定")]
@@ -56,17 +56,18 @@ public class CommentSpawn : MonoBehaviour
 
         if (spawnTimer >= currentInterval.time)
         {
-            DesideSpawnPos(sideVertices);
+            DesideSpawnPos(sideVertices,commentPrefab);
             spawnTimer = 0f;
         }
     }
 
-    void DesideSpawnPos(List<Vector3> sideVertices) //側面座標からランダムに生成座標を選ぶ関数
+    void DesideSpawnPos(List<Vector3> sideVertices, GameObject[] commentPrefab) //側面座標からランダムに生成座標を選ぶ関数
     {
-        int random = Random.Range(0, sideVertices.Count);
+        int posRandom = Random.Range(0, sideVertices.Count);
+        int commentRandom = Random.Range(0, commentPrefab.Length);
         //Debug.Log(random);
 
-        Instantiate(commentPrefab, sideVertices[random], Quaternion.identity);
+        Instantiate(commentPrefab[commentRandom], sideVertices[posRandom], Quaternion.identity);
     }
 
     void GetSideVertices(GameObject stage,List<Vector3>sideVertices)    //側面の頂点座標を取得する関数
