@@ -977,12 +977,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 847291714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1537d00edd45046a66ec957c9bd8a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 06f9fab46796a094aae21f8c4c4c4768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3064175969719533876, guid: 7f70ecbc35e196948bcc99c86b346e9b, type: 3}
-  spawnCount: 20
+  maxSpawnCount: 20
   spawnArea: {fileID: 847291715}
+  checkInterval: 1
 --- !u!1 &912281677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  attackPower: 1
+  attackPower: 10
   agility: 10
 --- !u!1 &1547613835
 GameObject:
@@ -3415,7 +3416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097959998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189488, y: 0.000000017203536, z: 3.1297526e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189488, y: -0.000000017203536, z: -3.1297526e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
