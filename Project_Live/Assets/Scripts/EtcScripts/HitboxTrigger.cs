@@ -16,7 +16,10 @@ public class HitboxTrigger : MonoBehaviour
         if (other.CompareTag(targetTag) && !hitTargets.Contains(other))
         {
             if (damageToEnemy != null)
-                damageToEnemy.TakeDamage(other.gameObject);
+            {
+                damageToEnemy.TakeDamage(other.gameObject); //ƒ_ƒ[ƒWˆ—
+                damageToEnemy.ApplyKnockback(other.gameObject); //‚«”ò‚Ñˆ—
+            }
 
             //Debug.Log("–½’†");
             hitTargets.Add(other);
