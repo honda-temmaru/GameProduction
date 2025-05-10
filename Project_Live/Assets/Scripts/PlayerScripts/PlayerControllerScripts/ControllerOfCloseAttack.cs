@@ -10,6 +10,8 @@ public class ControllerOfCloseAttack : MonoBehaviour
     [SerializeField] CloseAttack closeAttack;
     [SerializeField] InputAction cancelAction; //アクションを無効化する入力
 
+    public event System.Action OnCloseAttackPerformed;
+
     private void OnEnable()
     {
         cancelAction.Enable();
@@ -25,5 +27,6 @@ public class ControllerOfCloseAttack : MonoBehaviour
         if (!context.performed || cancelAction.IsPressed()) return;
 
         closeAttack.TryAttack(); //近接攻撃処理の呼び出し
+        OnCloseAttackPerformed?.Invoke(); //処理が呼ばれたことを通知する
     }
 }
