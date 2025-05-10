@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 369292447}
   - component: {fileID: 369292446}
   - component: {fileID: 369292445}
+  - component: {fileID: 369292448}
   m_Layer: 0
   m_Name: CloseRange (2)
   m_TagString: Untagged
@@ -228,6 +229,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369292443}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &369292448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369292443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0c412be842d834abcc2c404e58d326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  damageToEnemy: {fileID: 837679871}
 --- !u!1 &449447930
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +255,7 @@ GameObject:
   - component: {fileID: 449447934}
   - component: {fileID: 449447933}
   - component: {fileID: 449447932}
+  - component: {fileID: 449447935}
   m_Layer: 0
   m_Name: CloseRange
   m_TagString: Untagged
@@ -333,6 +349,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449447930}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &449447935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449447930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0c412be842d834abcc2c404e58d326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  damageToEnemy: {fileID: 837679871}
 --- !u!1 &525923595
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837679869}
   - component: {fileID: 837679870}
+  - component: {fileID: 837679871}
   m_Layer: 0
   m_Name: CloseRangeAttack
   m_TagString: Untagged
@@ -842,34 +873,47 @@ MonoBehaviour:
   comboSteps:
   - hitbox: {fileID: 449447930}
     baseDamage: 10
+    knockbackForce: 3
     attackDuration: 0.2
-    comboResetTime: 0.5
+    comboResetTime: 0.2
     windupTime: 0.2
     attackMoveDistance: 1
-    moveSpeedMultiplier: 0.2
   - hitbox: {fileID: 912281677}
     baseDamage: 10
+    knockbackForce: 3
     attackDuration: 0.2
-    comboResetTime: 0.5
+    comboResetTime: 0.2
     windupTime: 0.2
     attackMoveDistance: 1
-    moveSpeedMultiplier: 0.2
   - hitbox: {fileID: 369292443}
     baseDamage: 10
+    knockbackForce: 3
     attackDuration: 0.2
-    comboResetTime: 0.5
+    comboResetTime: 0.2
     windupTime: 0.2
     attackMoveDistance: 1
-    moveSpeedMultiplier: 0.2
   - hitbox: {fileID: 952118407}
     baseDamage: 10
+    knockbackForce: 10
     attackDuration: 0.2
-    comboResetTime: 0.5
+    comboResetTime: 0.1
     windupTime: 0.2
     attackMoveDistance: 1
-    moveSpeedMultiplier: 0.2
-  playerStatus: {fileID: 0}
+  playerStatus: {fileID: 1524185697}
+  damageToEnemy: {fileID: 837679871}
   movePlayer: {fileID: 2072640983}
+--- !u!114 &837679871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837679868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414fbc7d6c568614fb95a7458e0b2bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &847291714
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,12 +977,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 847291714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1537d00edd45046a66ec957c9bd8a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 06f9fab46796a094aae21f8c4c4c4768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3064175969719533876, guid: 7f70ecbc35e196948bcc99c86b346e9b, type: 3}
-  spawnCount: 20
+  maxSpawnCount: 20
   spawnArea: {fileID: 847291715}
+  checkInterval: 1
 --- !u!1 &912281677
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +996,7 @@ GameObject:
   - component: {fileID: 912281681}
   - component: {fileID: 912281680}
   - component: {fileID: 912281679}
+  - component: {fileID: 912281682}
   m_Layer: 0
   m_Name: CloseRange (1)
   m_TagString: Untagged
@@ -1044,6 +1090,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912281677}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &912281682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912281677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0c412be842d834abcc2c404e58d326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  damageToEnemy: {fileID: 837679871}
 --- !u!1 &923284088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1149,7 @@ GameObject:
   - component: {fileID: 952118411}
   - component: {fileID: 952118410}
   - component: {fileID: 952118409}
+  - component: {fileID: 952118412}
   m_Layer: 0
   m_Name: CloseRange (3)
   m_TagString: Untagged
@@ -1182,6 +1243,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952118407}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &952118412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952118407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0c412be842d834abcc2c404e58d326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Enemy
+  damageToEnemy: {fileID: 837679871}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +2064,6 @@ MonoBehaviour:
   hp: 100
   attackPower: 10
   agility: 10
-  invincibleDuration: 1
 --- !u!1 &1547613835
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,7 +3416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097959998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189488, y: 0.000000017203536, z: 3.1297526e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189488, y: -0.000000017203536, z: -3.1297526e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

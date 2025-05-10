@@ -7,8 +7,10 @@ using UnityEngine;
 public class DamageToEnemy : MonoBehaviour
 {
     float damage;
+    float knockbackForce;
 
     public float Damage { get { return damage; } set { damage = value; } }
+    public float KnockbackForce { get { return knockbackForce; } set {  knockbackForce = value; } }
 
     public void TakeDamage(GameObject enemy)
     {
@@ -22,5 +24,16 @@ public class DamageToEnemy : MonoBehaviour
 
         enemyStatus.Hp -= damage;
         //Debug.Log(damage + "É_ÉÅÅ[ÉWÇó^Ç¶ÇΩ");
+    }
+
+    public void ApplyKnockback(GameObject enemy)
+    {
+        Rigidbody rb = enemy.GetComponent<Rigidbody>();
+
+        if (rb != null && !rb.isKinematic)
+        {
+            Vector3 direction = (enemy.transform.position - transform.position).normalized;
+            rb.AddForce(direction * knockbackForce, ForceMode.Impulse);
+        }
     }
 }

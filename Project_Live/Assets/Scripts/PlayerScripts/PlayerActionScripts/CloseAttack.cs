@@ -11,6 +11,8 @@ class ComboStep
     [SerializeField] public GameObject hitbox;
     [Header("この攻撃が与える基本ダメージ")]
     [SerializeField] public float baseDamage = 10f;
+    [Header("この攻撃が敵を吹き飛ばす力")]
+    [SerializeField] public float knockbackForce = 10f;
     [Header("当たり判定の持続時間")]
     [SerializeField] public float attackDuration = 0.2f;
     [Header("攻撃判定消滅後、次の段に移行可能な猶予時間")]
@@ -42,7 +44,6 @@ public class CloseAttack : MonoBehaviour
     bool isAttackBuffered = false; //攻撃入力があったかどうか
     float stateTimer = 0f; //各状態の経過時間の計測用
 
-    float moveSpeedMultiplier = 1f; //攻撃中の移動即と制限用
     float movedDistance = 0f;
     float totalMoveDistance = 0f;
 
@@ -93,7 +94,8 @@ public class CloseAttack : MonoBehaviour
     {
         ComboStep step = comboSteps[currentComboIndex];
 
-        damageToEnemy.Damage = GetCurrentDamage();
+        damageToEnemy.Damage = GetCurrentDamage(); //与えるダメージの代入
+        damageToEnemy.KnockbackForce = step.knockbackForce; //吹き飛ばす力の代入
 
         if (step.hitbox != null) step.hitbox.SetActive(true);
 
