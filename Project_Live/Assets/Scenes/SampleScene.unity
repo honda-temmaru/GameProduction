@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 847291715}
   - component: {fileID: 847291718}
   m_Layer: 0
-  m_Name: EnamySpawnManager
+  m_Name: EnemySpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,8 +980,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f9fab46796a094aae21f8c4c4c4768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3064175969719533876, guid: 7f70ecbc35e196948bcc99c86b346e9b, type: 3}
-  maxSpawnCount: 20
+  spawnParameters:
+  - enemyPrefab: {fileID: 3064175969719533876, guid: 7f70ecbc35e196948bcc99c86b346e9b, type: 3}
+    maxSpawnCount: 10
+    enemyType: 0
+  - enemyPrefab: {fileID: 1686963957830972649, guid: 7ec15a4a766bd5645ad22156012d4566, type: 3}
+    maxSpawnCount: 4
+    enemyType: 2
+  - enemyPrefab: {fileID: 4566157072714159284, guid: 0ca38b335cd5ce943841935d2bf66391, type: 3}
+    maxSpawnCount: 1
+    enemyType: 1
   spawnArea: {fileID: 847291715}
   checkInterval: 1
 --- !u!1 &912281677
@@ -3416,7 +3424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097959998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189488, y: -0.000000017203536, z: -3.1297526e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189488, y: 0.000000017203536, z: 3.1297526e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
