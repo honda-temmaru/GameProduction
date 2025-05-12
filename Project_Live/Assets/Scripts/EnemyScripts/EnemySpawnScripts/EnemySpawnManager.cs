@@ -2,43 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SpawnParameter
+{
+    [Header("生成する敵プレハブ")]
+    public GameObject enemyPrefab;
+    [Header("この敵の最大同時出現数")]
+    public int maxSpawnCount;
+    [Header("この敵の種類")]
+    public EnemyType enemyType;
+}
+
 public class EnemySpawnManager : MonoBehaviour
 {
-    [Header("生成するオブジェクト")]
-    [SerializeField] GameObject enemyPrefab;
-    [Header("オブジェクトの最大出現数（この数だけ、敵が常にステージ上にいる")]
-    [SerializeField] int maxSpawnCount = 10;
+    [Header("スポーンさせるオブジェクトの設定")]
+    [SerializeField] List<SpawnParameter> spawnParameters;
     [Header("生成範囲")]
     [SerializeField] BoxCollider spawnArea;
     [Header("敵の数のチェック間隔")]
     [SerializeField] float checkInterval = 1.0f;
 
-    EnemySpawn spawner;
-    EnemyCountTracker tracker;
+    Dictionary<EnemyType, EnemySpawn> spawners = new();
+    Dictionary<EnemyType, EnemyCountTracker> trackers = new();
 
     float timer = 0f;
-
-    // Start is called before the first frame update
     void Start()
     {
-        spawner = new EnemySpawn(enemyPrefab, spawnArea);
-        tracker = new EnemyCountTracker("Enemy");
-
-        spawner.SpawnEnemies(maxSpawnCount);
+        foreach (var param in spawnParameters) //設定された敵の種類の数だけ処理を繰り返す
+        {
+            spawners[param.enemyType] = new EnemySpawn(param.enemyPrefab, spawnArea);
+            trackers[param.enemyType] = new EnemyCountTracker(param.enemyType);
+            spawners[param.enemyType].SpawnEnemies(param.maxSpawnCount); //敵の初期生成
+        }
     }
-
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
 
         if (timer < checkInterval) return;
 
-        if (tracker.HasChanged(out int currentCount)) //敵の数に変化があったら
-        {
-            int toSpawn = maxSpawnCount - currentCount; //敵の設定総数と、現在の数の差分を求める
+        timer = 0f;
 
-            if (toSpawn > 0) spawner.SpawnEnemies(toSpawn); //足りない数だけ敵を生成
+        foreach (var param in spawnParameters)
+        {
+            var tracker = trackers[param.enemyType];
+
+            if (tracker.HasChanged(out int currentCount)) //調べた種類の敵の数が少なくなっていたら
+            {
+                int toSpawn = param.maxSpawnCount - currentCount; //その種類の敵の最大同時出現数と現在の数との差分を求める
+
+                if (toSpawn > 0) spawners[param.enemyType].SpawnEnemies(toSpawn); //少ない分だけ敵を生成する
+            }
         }
     }
 }
