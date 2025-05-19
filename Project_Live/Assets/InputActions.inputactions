@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LongRangeAttack",
+                    "name": "ShotAttack",
                     "type": "Button",
                     "id": "1023eb3b-30dc-4f39-a230-3157fe189199",
                     "expectedControlType": "Button",
@@ -364,7 +364,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LongRangeAttack",
+                    "action": "ShotAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -375,7 +375,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "LongRangeAttack",
+                    "action": "ShotAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -447,6 +447,39 @@
                 },
                 {
                     "name": "One Modifier",
+                    "id": "4c1526c2-b2ac-44dd-a294-7d03a58a6a6f",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoodAction1",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "ca609ae3-db40-4c2b-9998-1f054f81b8a7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GoodAction1",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "56016dcb-753e-43a1-91ce-b77f32694ffa",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GoodAction1",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
                     "id": "de832be8-ffea-4e5d-b537-baa549a8d728",
                     "path": "OneModifier",
                     "interactions": "",
@@ -474,6 +507,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "GoodAction2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "c3c3d3a3-57ce-4502-8878-7841b8568916",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoodAction2",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "32b681d2-d490-4d9a-9d49-0c48385f8ea4",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GoodAction2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "f4b73bb0-fddf-4625-baba-18b840686630",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "GoodAction2",
                     "isComposite": false,
                     "isPartOfComposite": true

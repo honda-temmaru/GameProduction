@@ -37,8 +37,12 @@ public class EnemyStatus : CharacterStatus
 
         if (deathEffect != null) Instantiate(deathEffect, transform.position, Quaternion.identity);
 
-        Vector3 knockbackDirection = -transform.forward + Vector3.up * knockbackForce_Up;
-        rb.AddForce(knockbackDirection.normalized * knockbackForce_Back, ForceMode.Impulse);
+        // 吹き飛び処理（前方向 + 上方向を個別に加算）
+        Vector3 backwardForce = -transform.forward * knockbackForce_Back;
+        Vector3 upwardForce = Vector3.up * knockbackForce_Up;
+
+        // 合成して適用
+        rb.AddForce(backwardForce + upwardForce, ForceMode.Impulse);
 
         Destroy(gameObject, destroyDuration);
     }
