@@ -7,33 +7,34 @@ using UnityEngine;
 public class DamageToEnemy : MonoBehaviour
 {
     float damage;
-    float knockbackForce;
+    float forwardKnockbackForce;
+    float upwardKnockbackForce;
 
     public float Damage { get { return damage; } set { damage = value; } }
-    public float KnockbackForce { get { return knockbackForce; } set {  knockbackForce = value; } }
+    public float ForwardKnockbackForce { get { return forwardKnockbackForce; } set {  forwardKnockbackForce = value; } }
+    public float UpwardKnockbackForce { get { return upwardKnockbackForce; } set { upwardKnockbackForce= value; } }
 
-    public void TakeDamage(GameObject enemy)
+    public void TakeDamage(GameObject enemy) //ダメージを与える
     {
         EnemyStatus enemyStatus = enemy.GetComponent<EnemyStatus>();
 
-        if (enemyStatus == null)
-        {
-            Debug.LogWarning("対象が見つかりません");
-            return;
-        }
+        if (enemyStatus == null) return;
 
         enemyStatus.Hp -= damage;
-        //Debug.Log(damage + "ダメージを与えた");
+        Debug.Log(damage + "ダメージを与えた");
     }
 
-    public void ApplyKnockback(GameObject enemy)
+    public void ApplyKnockback(GameObject enemy) //吹き飛ぶ力を加える
     {
         Rigidbody rb = enemy.GetComponent<Rigidbody>();
 
         if (rb != null && !rb.isKinematic)
         {
-            Vector3 direction = (enemy.transform.position - transform.position).normalized;
-            rb.AddForce(direction * knockbackForce, ForceMode.Impulse);
+            Vector3 forwardDirection = (enemy.transform.position - transform.position).normalized;
+
+            Vector3 knockback = forwardDirection * forwardKnockbackForce + Vector3.up * upwardKnockbackForce;
+
+            rb.AddForce(knockback, ForceMode.Impulse);
         }
     }
 }

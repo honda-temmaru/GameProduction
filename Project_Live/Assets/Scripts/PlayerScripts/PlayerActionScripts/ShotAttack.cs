@@ -4,7 +4,7 @@ using UnityEngine;
 
 //ì¬ÒFŒKŒ´
 
-public class LongRangeAttack : MonoBehaviour
+public class ShotAttack : MonoBehaviour
 {
     [Header("”­Ë‚·‚é’e")]
     [SerializeField] GameObject bulletPrefab;

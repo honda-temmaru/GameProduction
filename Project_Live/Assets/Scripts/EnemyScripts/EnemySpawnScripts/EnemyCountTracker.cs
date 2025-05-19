@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCountTracker : MonoBehaviour
+public class EnemyCountTracker
 {
     EnemyType enemyType;
     int prev_Count;

@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 
 //作成者：桑原
 
-public class ControllerOfLongRangeAttack : MonoBehaviour
+public class ControllerOfShotAttack : MonoBehaviour
 {
-    [SerializeField] LongRangeAttack longRangeAttack;
+    [SerializeField] ShotAttack shotAttack;
     [SerializeField] InputAction cancelAction; //アクションを無効化する入力
 
     private void OnEnable()
@@ -20,10 +20,10 @@ public class ControllerOfLongRangeAttack : MonoBehaviour
         cancelAction.Disable();
     }
 
-    public void CallLongRangeAttack(InputAction.CallbackContext context)
+    public void CallShotAttack(InputAction.CallbackContext context)
     {
         if (!context.performed || cancelAction.IsPressed()) return;
 
-        longRangeAttack.ShotBullet();
+        shotAttack.ShotBullet();
     }
 }
