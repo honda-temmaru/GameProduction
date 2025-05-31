@@ -16,15 +16,65 @@ public class GoodPointDisplay : MonoBehaviour
     [Header("いいねアクション4に使用するポイント蓄積量表示用テキスト")]
     [SerializeField] TextMeshProUGUI goodPointText4;
 
+    [Header("通常時のテキストの色")]
+    [SerializeField] Color normalColor = Color.blue;
+    [Header("いいねアクション発動可能時のテキストの色")]
+    [SerializeField] Color highlightColor = Color.red;
+
     [Header("必要なコンポーネント")]
     [SerializeField] GoodAction goodAction;
+    [SerializeField] GoodPointNotifier notifier;
 
-    void Update()
+    void Start()
     {
-        //現在の各いいねアクション用のポイント蓄積量を画面に表示
-        goodPointText1.text = "GP1:" + goodAction.CurrentGoodPoint1.ToString();
-        goodPointText2.text = "GP2:" + goodAction.CurrentGoodPoint2.ToString();
-        goodPointText3.text = "GP3:" + goodAction.CurrentGoodPoint3.ToString();
-        goodPointText4.text = "GP4:" + goodAction.CurrentGoodPoint4.ToString();
+        if (notifier != null)
+            notifier.OnGoodPointChanged += HandleGoodPointChanged;
+
+        RefreshAll(); //初期表示
+    }
+
+    void OnDestroy()
+    {
+        if (notifier == null) return;
+
+        notifier.OnGoodPointChanged -= HandleGoodPointChanged;
+    }
+
+    void HandleGoodPointChanged(int index, int current) //受け取った通知の情報をもとに各表示を更新する
+    {
+        switch (index)
+        {
+            case 1:
+                UpdateDisplay(goodPointText1, current, goodAction.GoodCost1, 1);
+                break;
+            
+            case 2:
+                UpdateDisplay(goodPointText2, current, goodAction.GoodCost2, 2);
+                break;
+            
+            case 3:
+                UpdateDisplay(goodPointText3, current, goodAction.GoodCost3, 3);
+                break;
+            
+            case 4:
+                UpdateDisplay(goodPointText4, current, goodAction.GoodCost4, 4);
+                break;
+
+            default: break;
+        }
+    }
+
+    void UpdateDisplay(TextMeshProUGUI textObj, int currentPoint, int cost, int index) //表示の更新
+    {
+        textObj.text = "GP" + index + ":"+ currentPoint;
+        textObj.color = (currentPoint >= cost) ? highlightColor : normalColor;
+    }
+
+    void RefreshAll() //表示の初期設定
+    {
+        HandleGoodPointChanged(1, goodAction.CurrentGoodPoint1);
+        HandleGoodPointChanged(2, goodAction.CurrentGoodPoint2);
+        HandleGoodPointChanged(3, goodAction.CurrentGoodPoint3);
+        HandleGoodPointChanged(4, goodAction.CurrentGoodPoint4);
     }
 }

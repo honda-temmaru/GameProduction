@@ -51,7 +51,7 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 int toSpawn = param.maxSpawnCount - currentCount; //‚»‚Ìí—Ş‚Ì“G‚ÌÅ‘å“¯oŒ»”‚ÆŒ»İ‚Ì”‚Æ‚Ì·•ª‚ğ‹‚ß‚é
 
-                if (toSpawn > 0) spawners[param.enemyType].SpawnEnemies(toSpawn); //­‚È‚¢•ª‚¾‚¯“G‚ğ¶¬‚·‚é
+                if (toSpawn >= 0) spawners[param.enemyType].SpawnEnemies(toSpawn); //­‚È‚¢•ª‚¾‚¯“G‚ğ¶¬‚·‚é
             }
         }
     }

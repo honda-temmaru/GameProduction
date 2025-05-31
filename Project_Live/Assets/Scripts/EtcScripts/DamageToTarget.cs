@@ -4,7 +4,7 @@ using UnityEngine;
 
 //ì¬ÒFŒKŒ´
 
-public class DamageToEnemy : MonoBehaviour
+public class DamageToTarget : MonoBehaviour
 {
     float damage;
     float forwardKnockbackForce;
