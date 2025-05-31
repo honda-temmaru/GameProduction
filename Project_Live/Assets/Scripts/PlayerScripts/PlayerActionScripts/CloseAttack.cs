@@ -34,7 +34,7 @@ public class CloseAttack : MonoBehaviour
 
     [Header("必要なコンポーネント")]
     [SerializeField] PlayerStatus playerStatus;
-    [SerializeField] DamageToEnemy damageToEnemy;
+    [SerializeField] DamageToTarget damageToTarget;
     [SerializeField] MovePlayer movePlayer;
 
     public enum AttackState { None, Windup, Attacking, Recovering }
@@ -96,9 +96,9 @@ public class CloseAttack : MonoBehaviour
     {
         ComboStep step = comboSteps[currentComboIndex];
 
-        damageToEnemy.Damage = GetCurrentDamage(); //与えるダメージの代入
-        damageToEnemy.ForwardKnockbackForce = GetCurrentForwardForce(); //前方向へ吹き飛ばす力の代入
-        damageToEnemy.UpwardKnockbackForce = GetCurrentUpwardForce(); //上方向へ吹き飛ばす力の代入
+        damageToTarget.Damage = GetCurrentDamage(); //与えるダメージの代入
+        damageToTarget.ForwardKnockbackForce = GetCurrentForwardForce(); //前方向へ吹き飛ばす力の代入
+        damageToTarget.UpwardKnockbackForce = GetCurrentUpwardForce(); //上方向へ吹き飛ばす力の代入
 
         if (step.hitbox != null) step.hitbox.SetActive(true); //攻撃判定の有効化
 

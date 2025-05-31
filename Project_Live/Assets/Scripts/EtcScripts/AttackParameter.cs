@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletParameter : MonoBehaviour
+public class AttackParameter : MonoBehaviour
 {
     [Header("基本ダメージ")]
     [SerializeField] float baceDamage = 5f;
@@ -13,7 +13,7 @@ public class BulletParameter : MonoBehaviour
     [Header("取得するコンポーネントのオブジェクト名")]
     [SerializeField] string objectName = "PlayerStatus";
     [Header("必要なコンポーネント")]
-    [SerializeField] DamageToEnemy damageToEnemy;
+    [SerializeField] DamageToTarget damageToTarget;
 
     GameObject player;
     PlayerStatus status;
@@ -29,9 +29,9 @@ public class BulletParameter : MonoBehaviour
 
     void SetParameters() //ダメージ、吹き飛ばし力を設定する
     {
-        damageToEnemy.Damage = GetDamage();
-        damageToEnemy.ForwardKnockbackForce = GetForwardForce();
-        damageToEnemy.UpwardKnockbackForce = GetUpwardForce();
+        damageToTarget.Damage = GetDamage();
+        damageToTarget.ForwardKnockbackForce = GetForwardForce();
+        damageToTarget.UpwardKnockbackForce = GetUpwardForce();
     }
 
     float GetDamage() //最終的なダメージ量を取得する

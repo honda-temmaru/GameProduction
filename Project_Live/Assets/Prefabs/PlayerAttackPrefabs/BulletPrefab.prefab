@@ -153,7 +153,7 @@ MonoBehaviour:
   baceForwardKnockbackForce: 0.25
   baceUpwardKnockbackForce: 0.5
   objectName: PlayerStatus
-  damageToEnemy: {fileID: 8233913610039435407}
+  damageToTarget: {fileID: 8233913610039435407}
 --- !u!114 &4762591757007477301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Enemy
-  damageToEnemy: {fileID: 8233913610039435407}
+  damageToTarget: {fileID: 8233913610039435407}
 --- !u!114 &8233913610039435407
 MonoBehaviour:
   m_ObjectHideFlags: 0

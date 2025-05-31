@@ -20,17 +20,28 @@ public class GoodAction : MonoBehaviour
     [SerializeField] GoodSystem goodSystem;
     [SerializeField] WideRangeAttack wideAttack;
     [SerializeField] LongRangeAttack longRangeAttack;
-
-    public int CurrentGoodPoint1 { get { return currentGoodPoint1; } }
-    public int CurrentGoodPoint2 { get {  return currentGoodPoint2; } }
-    public int CurrentGoodPoint3 { get {  return currentGoodPoint3; } }
-    public int CurrentGoodPoint4 { get {  return currentGoodPoint4; } }
+    [SerializeField] ContinuosHitAttack continuosHitAttack;
+    [SerializeField] ExplosionAttack explosionAttack;
 
     float currentGoodNum = 0;
     int currentGoodPoint1 = 0;
     int currentGoodPoint2 = 0;
     int currentGoodPoint3 = 0;
     int currentGoodPoint4 = 0;
+
+    public float CurrentGoodNum { get { return currentGoodNum; } }
+
+    public int GoodCost1 { get { return goodCost1; } }
+    public int GoodCost2 { get { return goodCost2; } }
+    public int GoodCost3 { get { return goodCost3; } }
+    public int GoodCost4 {  get { return goodCost4; } }
+
+    public int CurrentGoodPoint1 { get { return currentGoodPoint1; } }
+    public int CurrentGoodPoint2 { get {  return currentGoodPoint2; } }
+    public int CurrentGoodPoint3 { get {  return currentGoodPoint3; } }
+    public int CurrentGoodPoint4 { get {  return currentGoodPoint4; } }
+
+    
 
     void Start()
     {
@@ -82,6 +93,7 @@ public class GoodAction : MonoBehaviour
     {
         if (currentGoodPoint3 < goodCost3) return;
 
+        continuosHitAttack.GenerateAttack();
         Debug.Log("イイネアクション3発動！");
         currentGoodPoint3 = 0;
     }
@@ -90,6 +102,7 @@ public class GoodAction : MonoBehaviour
     {
         if (currentGoodPoint4 < goodCost4) return;
 
+        explosionAttack.TriggerExplosions();
         Debug.Log("イイネアクション4発動！");
         currentGoodPoint4 = 0;
     }

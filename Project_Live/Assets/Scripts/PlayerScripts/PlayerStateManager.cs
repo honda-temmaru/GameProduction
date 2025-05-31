@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerStateManager;
 
@@ -7,61 +9,43 @@ using static PlayerStateManager;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    [SerializeField]
-    public struct StateFlags
+    public enum State
     {
-        public bool isInvincible;
+        Idle, Attack, Shot, Dodge, GoodAction1, GoodAction2, GoodAction3, GoodAction4
+    };
+
+    State currentState;
+
+    private void Start()
+    {
+        currentState = State.Idle;
     }
 
-    [Header("マテリアルの変更を行うオブジェクト")]
-    [SerializeField] Renderer playerRenderer;
-
-    [Header("通常時用のマテリアル")]
-    [SerializeField] Material normalMaterial;
-    [Header("無敵状態時用のマテリアル")]
-    [SerializeField] Material invincibleMaterial;
-
-    [Header("必要なコンポーネント")]
-    [SerializeField] Dodge dodge;
-
-    StateFlags currentStateFlags;
-    StateFlags previousStateFlags;
-
-    Renderer targetRenderer;
-
-    void Start()
+    private void Update()
     {
-        targetRenderer = playerRenderer.GetComponent<Renderer>();
-    }
-
-    void Update()
-    {
-        currentStateFlags.isInvincible = dodge.IsDodging; //現在の回避状態を更新
-
-        CheckAndLogStateChange();
-
-        UpdateMaterialOnState();
-    }
-
-    private void CheckAndLogStateChange() //状態変化に応じた処理
-    {
-        if (currentStateFlags.isInvincible != previousStateFlags.isInvincible)
+        switch (currentState)
         {
-            if (currentStateFlags.isInvincible)
-                Debug.Log("無敵です！");
+            case State.Idle:
+                return;
+
+            case State.Attack:
+                return;
+
+            case State.Shot:
+                return;
+
+            case State.Dodge:
+                return;
+
+            case State.GoodAction1: return;
+
+            case State.GoodAction2: return;
+
+            case State.GoodAction3: return;
+
+            case State.GoodAction4: return;
+
+            default: return;
         }
-
-        previousStateFlags = currentStateFlags;
-    }
-
-    private void UpdateMaterialOnState() //状態によってマテリアルを変更する処理
-    {
-        if (currentStateFlags.isInvincible)
-        {
-            targetRenderer.material = invincibleMaterial;
-        }
-
-        else
-            targetRenderer.material = normalMaterial;
     }
 }
