@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b4942550ff06747ab6ed31589685dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baceDamage: 50
+  baceDamage: 100
   baceForwardKnockbackForce: 1
   baceUpwardKnockbackForce: 1
   objectName: PlayerStatus

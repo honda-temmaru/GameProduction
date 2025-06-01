@@ -1462,7 +1462,7 @@ MonoBehaviour:
     maxSpawnCount: 1
     enemyType: 1
   spawnArea: {fileID: 847291715}
-  checkInterval: 0.5
+  checkInterval: 1
 --- !u!1 &912281677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55654083ce4744a46a51d1141b5dee54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodCost1: 50
+  goodCost1: 0
   goodCost2: 100
   goodCost3: 150
   goodCost4: 200
@@ -4783,7 +4783,7 @@ PrefabInstance:
     - target: {fileID: 8898164449426694890, guid: b1815c325bd7c244ab4202e1c2ec429c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d63a1f98c22543949ae901bc94baf7a2, type: 2}
+      objectReference: {fileID: 2100000, guid: 570748282521afd449257a1ec21baf3b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
