@@ -34,7 +34,7 @@ public class MovePlayer : MonoBehaviour
     public float MoveSpeedMultiplier { get { return moveSpeedMultiplier; } set { moveSpeedMultiplier = value; } }
     public float RotationSpeedMultiplier { get { return rotateSpeedMultiplier; } set {  rotateSpeedMultiplier = value; } }
 
-    void Update()
+    public void MoveProcess()
     {
         prev_Move = move; //ˆÚ“®‚Ì’l‚ð•Û‘¶
 
@@ -42,7 +42,14 @@ public class MovePlayer : MonoBehaviour
         {
             CalculateMoveDirection();
             RotateTransform();
-            MoveTransform();           
+            MoveTransform();
+            //Debug.Log("Move");
+        }
+
+        else if (move.magnitude <= 0.1f)
+        {
+            PlayerInputEvents.IdleInput();
+            //Debug.Log("Idle");
         }
 
         prev_Position = target.position; //Œ»Ý’n“_‚ð•Û‘¶

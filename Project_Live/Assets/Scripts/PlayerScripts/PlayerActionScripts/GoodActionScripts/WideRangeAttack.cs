@@ -18,7 +18,7 @@ public class WideRangeAttack : MonoBehaviour
     {
         if (attack == null) return;
 
-        attackScale += expandValue;
+        attackScale += expandValue * Time.deltaTime;
 
         attack.transform.localScale = new Vector3(attackScale, attack.transform.localScale.y, attackScale);
     }

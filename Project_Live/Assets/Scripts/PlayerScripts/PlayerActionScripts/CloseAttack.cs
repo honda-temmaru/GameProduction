@@ -50,6 +50,7 @@ public class CloseAttack : MonoBehaviour
     float totalMoveDistance = 0f;
 
     public AttackState CurrentAttackState { get { return attackState; } private set { attackState = value; } }
+    public int CurrentComboIndex { get { return currentComboIndex; } }
 
     public void TryAttack() //攻撃処理（近接攻撃ボタンを押したときに呼ばれる）
     {
@@ -57,7 +58,7 @@ public class CloseAttack : MonoBehaviour
 
         isAttackBuffered = true;
         movePlayer.MoveSpeedMultiplier = 0f; //移動を制限
-        stateTimer = 0f;
+        //stateTimer = 0f;
         attackState = AttackState.Windup;
 
         ComboStep step = comboSteps[currentComboIndex];
@@ -67,7 +68,7 @@ public class CloseAttack : MonoBehaviour
         //Debug.Log(currentComboIndex + 1 + "段目");
     }
 
-    void Update()
+    public void CloseAttackProcess()
     {
         stateTimer += Time.deltaTime;
 
@@ -89,8 +90,11 @@ public class CloseAttack : MonoBehaviour
                 if (Time.time - lastAttackTime > GetCurrentComboResetTime())
                     ResetCombo();
                 break;
+
+            case AttackState.None:
+                break;
         }
-    }    
+    }
 
     void BeginAttack() //攻撃開始時の処理
     {
@@ -140,6 +144,7 @@ public class CloseAttack : MonoBehaviour
 
         //Debug.Log(currentComboIndex + "コンボのリセット");
         currentComboIndex = 0;
+        PlayerInputEvents.IdleInput();
     }
 
     float GetCurrentComboResetTime() //次のコンボ段階までの猶予時間の取得

@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log("攻撃！！！");
+        //Debug.Log("攻撃！！！");
     }
     void LookPlayer()//Y軸だけ変える
     {

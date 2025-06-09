@@ -22,6 +22,6 @@ public class GoodSystem : MonoBehaviour
     void Update()
     {
         goodText.text = goodNum.ToString();     //‚¢‚¢‚Ë”‚ğstring‚É•ÏŠ·‚µ‚Ä‰æ–Ê‚É•\¦
-        Debug.Log(goodNum);
+        //Debug.Log(goodNum);
     }
 }

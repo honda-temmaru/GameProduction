@@ -12,25 +12,27 @@ public class ShotAttack : MonoBehaviour
     [SerializeField] Transform shotPos;
     [Header("’e‚Ì‘¬“x")]
     [SerializeField] float bulletSpeed;
-    [Header("Ä”­ŽË‚Ü‚Å‚ÌŠÔŠu")]
+    [Header("”­ŽË‚Ü‚Å‚ÌŽžŠÔ")]
     [SerializeField] float shotInterval = 0.5f;
 
     float timeSinceLastShot = 0f;
 
-    void Update()
+    public void ShotAttackProcess()
     {
         timeSinceLastShot += Time.deltaTime;
+
+        if (timeSinceLastShot >= shotInterval) ShotBullet();
     }
 
-    public void ShotBullet()
+    void ShotBullet()
     {
-        if (timeSinceLastShot < shotInterval) return;
-
         GameObject bullet = Instantiate(bulletPrefab, shotPos.transform.position, shotPos.transform.rotation);
 
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = shotPos.forward * bulletSpeed;
 
         timeSinceLastShot = 0f;
+
+        PlayerInputEvents.IdleInput();
     }
 }
