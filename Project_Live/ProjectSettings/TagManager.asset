@@ -8,6 +8,7 @@ TagManager:
   - GoodSystem
   - Enemy
   - LookPoint
+  - Camera
   layers:
   - Default
   - TransparentFX

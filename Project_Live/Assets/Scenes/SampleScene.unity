@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1101,6 +1101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2098856295}
   - {fileID: 1524185695}
   - {fileID: 2072640982}
   - {fileID: 837679869}
@@ -1311,32 +1312,32 @@ MonoBehaviour:
     baceForwardKnockbackForce: 0.25
     baceUpwardKnockbackForce: 0.25
     attackDuration: 0.2
-    comboResetTime: 0.4
-    windupTime: 0.4
+    comboResetTime: 0.2
+    windupTime: 0.2
     attackMoveDistance: 1
   - hitbox: {fileID: 912281677}
     baseDamage: 10
     baceForwardKnockbackForce: 0.25
     baceUpwardKnockbackForce: 0.25
     attackDuration: 0.2
-    comboResetTime: 0.4
-    windupTime: 0.4
+    comboResetTime: 0.2
+    windupTime: 0.2
     attackMoveDistance: 1
   - hitbox: {fileID: 369292443}
     baseDamage: 10
     baceForwardKnockbackForce: 0.25
     baceUpwardKnockbackForce: 0.25
     attackDuration: 0.2
-    comboResetTime: 0.4
-    windupTime: 0.4
+    comboResetTime: 0.2
+    windupTime: 0.2
     attackMoveDistance: 1
   - hitbox: {fileID: 952118407}
     baseDamage: 10
     baceForwardKnockbackForce: 1
     baceUpwardKnockbackForce: 1
     attackDuration: 0.2
-    comboResetTime: 0.4
-    windupTime: 0.5
+    comboResetTime: 0.1
+    windupTime: 0.2
     attackMoveDistance: 1
   playerStatus: {fileID: 1524185697}
   damageToTarget: {fileID: 837679871}
@@ -1461,7 +1462,7 @@ MonoBehaviour:
     maxSpawnCount: 1
     enemyType: 1
   spawnArea: {fileID: 847291715}
-  checkInterval: 2
+  checkInterval: 0.5
 --- !u!1 &912281677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1827,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: -0.03632495, y: -0, z: -0, w: 0.99934006}
-  m_LocalPosition: {x: 1.0915935, y: -0.64, z: -6.551091}
+  m_LocalPosition: {x: 0, y: -0.64, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2220,6 +2221,7 @@ Transform:
   - {fileID: 1256248359}
   - {fileID: 845345380}
   - {fileID: 580700236}
+  - {fileID: 1878036966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1136610101
@@ -2271,10 +2273,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55654083ce4744a46a51d1141b5dee54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodCost1: 0
-  goodCost2: 0
-  goodCost3: 0
-  goodCost4: 0
+  goodCost1: 50
+  goodCost2: 100
+  goodCost3: 150
+  goodCost4: 200
   goodSystem: {fileID: 8272935803192008037}
   wideAttack: {fileID: 1289444029}
   longRangeAttack: {fileID: 797087819}
@@ -2473,7 +2475,7 @@ Transform:
   m_GameObject: {fileID: 1186035185}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0915935, y: -0.64, z: -6.551091}
+  m_LocalPosition: {x: 0, y: -0.64, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2510,6 +2512,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3823395fe779a46b896201a0c2517e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1229364333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229364334}
+  - component: {fileID: 1229364336}
+  - component: {fileID: 1229364335}
+  m_Layer: 0
+  m_Name: BazuriCamera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1229364334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229364333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1878036966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1229364335
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229364333}
+  m_Enabled: 1
+--- !u!20 &1229364336
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229364333}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1256248358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2586,7 +2680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 5487005367828503272, guid: 81384557549cbf54cbcf9336d3de4c7a, type: 3}
-  expandValue: 20
+  expandValue: 0.05
   generatePos: {fileID: 1113225796}
 --- !u!1 &1303064749
 GameObject:
@@ -2827,7 +2921,6 @@ GameObject:
   - component: {fileID: 1524185695}
   - component: {fileID: 1524185697}
   - component: {fileID: 1524185698}
-  - component: {fileID: 1524185699}
   m_Layer: 0
   m_Name: PlayerStatus
   m_TagString: Untagged
@@ -2874,27 +2967,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524185694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fad332ec06aaed428c57a68d07b3ac1, type: 3}
+  m_Script: {fileID: 11500000, guid: 193b03622f2d18e488e66daa6008d3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePlayer: {fileID: 2072640983}
-  closeAttack: {fileID: 837679870}
-  shotAttack: {fileID: 1547613837}
-  dodge: {fileID: 1183036782}
-  goodAction: {fileID: 1136610103}
---- !u!114 &1524185699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524185694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552dd77b75c15504abfde0aaf2d3e80b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 1982247283}
 --- !u!1 &1546116021
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,6 +3424,62 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6a01be04-f00d-4382-900d-2b2873a63cf8
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1711699309}
+        m_TargetAssemblyTypeName: BazuriCameraMove, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9e079628-5fa4-47ad-a154-c9e416c02455
+    m_ActionName: Bazuri/CameraMove[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1711699309}
+        m_TargetAssemblyTypeName: BazuriCameraMove, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd3d5d8a-c314-4f4c-b643-a10dca0b6849
+    m_ActionName: Bazuri/CameraRotate[/XInputControllerWindows/rightStick,/Mouse/delta,/Pen/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1711699309}
+        m_TargetAssemblyTypeName: BazuriCameraMove, Assembly-CSharp
+        m_MethodName: OnCameraUpDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6c8183af-3665-4ccb-887c-19d370177746
+    m_ActionName: Bazuri/CameraUp[/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d3cac64-847e-4d82-a146-8882a0a8937d
+    m_ActionName: Bazuri/CameraDown[/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27dbbc45-bb9b-49ca-a8ce-00fbaaef0257
+    m_ActionName: Bazuri/Shot[/XInputControllerWindows/rightTrigger,/Mouse/leftButton,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3652,6 +3783,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619972797}
   m_CullTransparentMesh: 1
+--- !u!1 &1656152468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656152469}
+  - component: {fileID: 1656152470}
+  m_Layer: 0
+  m_Name: MoveAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1656152469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656152468}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2098856295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1656152470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656152468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9bd9837b26cce4da0cfe7c42156264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1982247283}
+  movePlayer: {fileID: 2072640983}
+--- !u!1 &1711699307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711699308}
+  - component: {fileID: 1711699309}
+  m_Layer: 0
+  m_Name: BazuriShotManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1711699308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711699307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1952108092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711699309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711699307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c757f62a75c73b14b9c63b1c37d9bab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  lookSpeed: 1
+  bazuri: {fileID: 2145068195}
 --- !u!1 &1716161651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7571560763133770188, guid: b1815c325bd7c244ab4202e1c2ec429c, type: 3}
@@ -3682,7 +3906,7 @@ Transform:
   m_GameObject: {fileID: 1744752737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0915935, y: 0.64, z: -1.448909}
+  m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4002,6 +4226,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1878036965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1878036966}
+  m_Layer: 0
+  m_Name: BazuriShotCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1878036966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878036965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1229364334}
+  m_Father: {fileID: 1113225796}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1940885590
 GameObject:
   m_ObjectHideFlags: 3
@@ -4115,6 +4371,7 @@ Transform:
   - {fileID: 7324377562995865312}
   - {fileID: 847291717}
   - {fileID: 972647954}
+  - {fileID: 1711699308}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1982247282 stripped
@@ -4384,7 +4641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097959998}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018189488, y: -0.000000017203536, z: -3.1297526e-10, w: 0.9998346}
+  m_LocalRotation: {x: -0.018189488, y: 0.000000017203536, z: 3.1297526e-10, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4438,6 +4695,38 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 631511335}
+--- !u!1 &2098856294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098856295}
+  m_Layer: 0
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2098856295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098856294}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1656152469}
+  m_Father: {fileID: 766505044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119038037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4615,6 +4904,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d95abeed3bd01841bfd8bc62c2750bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 1585006559}
+  mainCamera: {fileID: 1744752737}
+  bazuriCamera: {fileID: 1229364333}
+  cameraTime: 5
+  slowSpeed: 0.2
+  defaultPos: {fileID: 0}
 --- !u!1 &1110890836914444254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4723,7 +5018,7 @@ PrefabInstance:
     - target: {fileID: 8898164449426694890, guid: b1815c325bd7c244ab4202e1c2ec429c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 570748282521afd449257a1ec21baf3b, type: 2}
+      objectReference: {fileID: 2100000, guid: d63a1f98c22543949ae901bc94baf7a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
