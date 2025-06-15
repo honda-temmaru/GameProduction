@@ -5,10 +5,14 @@ using UnityEngine;
 public class GoodAction1State : IPlayerState
 {
     PlayerAnimationController anim;
+    GoodAction goodAction;
 
-    public GoodAction1State(PlayerAnimationController anim)
+    float currentStateTime = 0f;
+
+    public GoodAction1State(PlayerAnimationController anim, GoodAction goodAction)
     {
         this.anim = anim;
+        this.goodAction = goodAction;
     }
 
     public void Enter()
@@ -19,7 +23,11 @@ public class GoodAction1State : IPlayerState
 
     public void Update()
     {
+        currentStateTime += Time.deltaTime;
 
+        if (currentStateTime < goodAction.GoodAction1Parameters.ActionInterval) return;
+
+        goodAction.GoodAction1();
     }
 
     public void Exit()

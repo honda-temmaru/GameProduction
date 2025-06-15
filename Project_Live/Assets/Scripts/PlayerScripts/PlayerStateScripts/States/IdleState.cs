@@ -10,13 +10,25 @@ public class IdleState : IPlayerState
 
     public IdleState(PlayerAnimationController anim)
     {
-        //this.anim = anim;
+        if (anim == null)
+        {
+            Debug.Log("error");
+            return;
+        }
+
+        this.anim = anim;
     }
 
     public void Enter()
     {
-        Debug.Log("待機状態に移行");
-        //anim.PlayIdle();
+        if (anim == null)
+        {
+            Debug.Log("missEnter");
+            return;
+        }
+        //Debug.Log("待機状態に移行");
+        anim.PlayIdle();
+
     }
 
     public void Update()
@@ -26,6 +38,6 @@ public class IdleState : IPlayerState
 
     public void Exit()
     {
-        Debug.Log("待機状態終了");
+        //Debug.Log("待機状態終了");
     }
 }

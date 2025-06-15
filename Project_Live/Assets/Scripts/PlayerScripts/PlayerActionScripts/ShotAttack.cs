@@ -14,8 +14,14 @@ public class ShotAttack : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [Header("”­Ë‚Ü‚Å‚ÌŠÔ")]
     [SerializeField] float shotInterval = 0.5f;
+    [Header("’e‚ğ”­Ë‚µ‚Ä‚©‚ç‘¼‚Ìó‘Ô‚É‘JˆÚ‚·‚é‚Ü‚Å‚ÌŠÔ")]
+    [SerializeField] float changeStateInterval = 0.5f;
 
     float timeSinceLastShot = 0f;
+
+    public float ChangeStateInterval { get { return changeStateInterval; } }
+
+    public float TimeSinceLastShot { get { return timeSinceLastShot; } set { timeSinceLastShot = value; } }
 
     public void ShotAttackProcess()
     {

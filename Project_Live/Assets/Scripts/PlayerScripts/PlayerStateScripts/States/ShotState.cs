@@ -15,17 +15,20 @@ public class ShotState : IPlayerState
 
     public void Enter()
     {
-        Debug.Log("遠距離攻撃状態に移行");
-        //anim.PlayShotAttack();
+        //Debug.Log("遠距離攻撃状態に移行");
+        anim.PlayShotAttack();
     }
 
     public void Update()
     {
         shotAttack.ShotAttackProcess();
+
+        if (shotAttack.TimeSinceLastShot >= shotAttack.ChangeStateInterval) PlayerInputEvents.IdleInput();
     }
 
     public void Exit()
     {
-        Debug.Log("遠距離状態を終了");
+        shotAttack.TimeSinceLastShot = 0;
+        //Debug.Log("遠距離状態を終了");
     }
 }

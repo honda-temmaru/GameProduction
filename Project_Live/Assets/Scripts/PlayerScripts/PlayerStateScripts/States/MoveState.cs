@@ -16,7 +16,7 @@ public class MoveState : IPlayerState
     public void Enter()
     {
         anim.PlayMove();
-        Debug.Log("移動状態に移行");
+        //Debug.Log("移動状態に移行");
     }
 
     public void Update()
@@ -26,7 +26,6 @@ public class MoveState : IPlayerState
 
     public void Exit()
     {
-        anim.PlayIdle();
-        Debug.Log("移動状態を終了");
+        //Debug.Log("移動状態を終了");
     }
 }

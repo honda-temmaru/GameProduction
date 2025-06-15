@@ -5,26 +5,29 @@ using UnityEngine;
 public class CloseAttackState : IPlayerState
 {
     PlayerAnimationController anim;
+    MovePlayer movePlayer;
     CloseAttack closeAttack;
 
     bool playedCurrentAnim = false;
     int lastAttackIndex = -1;
 
-    public CloseAttackState(PlayerAnimationController anim, CloseAttack closeAttack)
+    public CloseAttackState(PlayerAnimationController anim, MovePlayer movePlayer, CloseAttack closeAttack)
     {
         this.anim = anim;
+        this.movePlayer = movePlayer;
         this.closeAttack = closeAttack;
     }
 
     public void Enter()
     {
         anim.ResetAllParameters();
-        Debug.Log("‹ßÚUŒ‚ó‘Ô‚ÉˆÚs");
+        //Debug.Log("‹ßÚUŒ‚ó‘Ô‚ÉˆÚs");
     }
 
     public void Update()
     {
         closeAttack.CloseAttackProcess(); //‹ßÚUŒ‚ˆ—
+        movePlayer.MoveProcess_AnyAttackState(); //ˆÚ“®ˆ—
 
         if (closeAttack.CurrentAttackState == CloseAttack.AttackState.Windup)
         {
@@ -37,14 +40,14 @@ public class CloseAttackState : IPlayerState
         {
             playedCurrentAnim = false;
             lastAttackIndex = -1;
-            Debug.Log("Reset");
+            //Debug.Log("Reset");
         }
     }
 
     public void Exit()
     {
-        anim.PlayIdle();
-        Debug.Log("‹ßÚUŒ‚ó‘Ô‚ğI—¹");
+        //anim.PlayIdle();
+        //Debug.Log("‹ßÚUŒ‚ó‘Ô‚ğI—¹");
     }
 
     void AnimationProcess()

@@ -6,13 +6,8 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] Animator playerAnimator;
-    Animator animator;
+    [SerializeField] Animator animator;
 
-    void Awake()
-    {
-        animator = playerAnimator.GetComponent<Animator>();
-    }
 
     public void PlayIdle()
     {
@@ -52,6 +47,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void PlayShotAttack()
     {
+        ResetAllParameters();
         animator.SetTrigger("Shot");
     }
 
@@ -80,9 +76,10 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetTrigger("GoodAction4");
     }
 
-    public void ResetAllParameters()
+    public void ResetAllParameters() //アニメーションの遷移用パラメータのリセット
     {
         animator.SetInteger("TransitionNo", -1);
         animator.SetInteger("CloseAttackNo", -1);
+        animator.ResetTrigger("Shot");
     }
 }

@@ -5,12 +5,15 @@ using UnityEngine.XR;
 
 //作成者：桑原
 
-public class PlayerStateMachine : MonoBehaviour
+//イイネアクションが発動可能なら、発動時にイベントを通知する
+
+public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管理を行う
 {
     IPlayerState currentState;
 
     PlayerAnimationController anim;
 
+    [SerializeField] PlayerAnimationController animController;
     [SerializeField] MovePlayer movePlayer;
     [SerializeField] CloseAttack closeAttack;
     [SerializeField] ShotAttack shotAttack;
@@ -21,7 +24,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Awake()
     {
-        anim = GetComponent<PlayerAnimationController>();
+        anim = animController.GetComponent<PlayerAnimationController>();
         ChangeState(new IdleState(anim));
     }
 
@@ -79,7 +82,7 @@ public class PlayerStateMachine : MonoBehaviour
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is CloseAttackState))
         {
-            ChangeState(new CloseAttackState(anim, closeAttack));
+            ChangeState(new CloseAttackState(anim, movePlayer, closeAttack));
         }
     }
 
@@ -103,10 +106,11 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnGoodAction1Input()
     {
+        //if (goodAction.)
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction1State))
         {
-            //ChangeState(new GoodAction1State(anim, goodAction));
+            ChangeState(new GoodAction1State(anim, goodAction));
         }
     }
 
@@ -115,7 +119,7 @@ public class PlayerStateMachine : MonoBehaviour
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction2State))
         {
-            //ChangeState(new GoodAction2State(anim, goodAction));
+            ChangeState(new GoodAction2State(anim, goodAction));
         }
     }
 
@@ -124,7 +128,7 @@ public class PlayerStateMachine : MonoBehaviour
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction3State))
         {
-            //ChangeState(new GoodAction3State(anim, goodAction));
+            ChangeState(new GoodAction3State(anim, goodAction));
         }
     }
 
@@ -133,7 +137,7 @@ public class PlayerStateMachine : MonoBehaviour
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction4State))
         {
-            //ChangeState(new GoodAction4State(anim, goodAction));
+            ChangeState(new GoodAction4State(anim, goodAction));
         }
     }
 }

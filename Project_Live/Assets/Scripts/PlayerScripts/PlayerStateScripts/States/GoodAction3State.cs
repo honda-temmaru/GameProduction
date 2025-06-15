@@ -5,10 +5,12 @@ using UnityEngine;
 public class GoodAction3State : IPlayerState
 {
     PlayerAnimationController anim;
+    GoodAction goodAction;
 
-    public GoodAction3State(PlayerAnimationController anim)
+    public GoodAction3State(PlayerAnimationController anim, GoodAction goodAction)
     {
         this.anim = anim;
+        this.goodAction = goodAction;
     }
 
     public void Enter()

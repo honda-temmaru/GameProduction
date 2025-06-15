@@ -46,13 +46,23 @@ public class MovePlayer : MonoBehaviour
             //Debug.Log("Move");
         }
 
-        else if (move.magnitude <= 0.1f)
+        else if (move == prev_Move)
         {
             PlayerInputEvents.IdleInput();
             //Debug.Log("Idle");
         }
 
         prev_Position = target.position; //Œ»Ý’n“_‚ð•Û‘¶
+    }
+
+    public void MoveProcess_AnyAttackState()
+    {
+        if (move.magnitude > 0.1f) //ˆÚ“®‚Ì“ü—Í‚ª‚ ‚Á‚½‚ç
+        {
+            CalculateMoveDirection();
+            RotateTransform();
+            MoveTransform();
+        }
     }
 
     void CalculateMoveDirection() //ˆÚ“®•ûŒü‚ÌŒvŽZ

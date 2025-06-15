@@ -34,7 +34,7 @@ public class CommentGet : MonoBehaviour
             getTrigger = true;
             Destroy(this.gameObject);
             goodSystem.GoodNum += DesideGoodNumValue(minNum,maxNum);
-            Debug.Log("コメントを取得しました");
+            //Debug.Log("コメントを取得しました");
         }
     }
 }
