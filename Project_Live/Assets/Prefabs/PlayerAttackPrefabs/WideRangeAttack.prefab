@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8082889427763803476}
   - component: {fileID: 4519553172102967373}
   - component: {fileID: 3393917515326004994}
+  - component: {fileID: 3012535522191844047}
   - component: {fileID: 511870310876325751}
   - component: {fileID: 278236563394270022}
   - component: {fileID: 6511622800160731565}
@@ -123,11 +124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b4942550ff06747ab6ed31589685dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baceDamage: 50
+  baceDamage: 100
   baceForwardKnockbackForce: 1
   baceUpwardKnockbackForce: 1
   objectName: PlayerStatus
   damageToTarget: {fileID: 6511622800160731565}
+--- !u!114 &3012535522191844047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487005367828503272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8724634a7b0d3740b871b2d64de03d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandValue: 15
 --- !u!114 &511870310876325751
 MonoBehaviour:
   m_ObjectHideFlags: 0

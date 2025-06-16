@@ -5,16 +5,31 @@ using UnityEngine;
 
 //作成者：桑原大悟
 
+[System.Serializable]
+public class GoodActionParameters
+{
+    [Header("発動に必要ないいね数")]
+    [SerializeField] int goodCost = 100;
+    [Header("攻撃が発生するまでの時間")]
+    [SerializeField] float actionInterval = 1f;
+    [Header("待機状態に移行するまでの時間")]
+    [SerializeField] float changeStateInterval = 2f;
+
+    public int GoodCost { get { return goodCost; } }
+    public float ActionInterval { get { return actionInterval;} }
+    public float ChangeStateInterval { get { return changeStateInterval;} }
+}
+
 public class GoodAction : MonoBehaviour
 {
-    [Header("イイネアクション1発動に必要ないいね数")]
-    [SerializeField] int goodCost1 = 100;
-    [Header("イイネアクション2発動に必要ないいね数")]
-    [SerializeField] int goodCost2 = 100;
-    [Header("イイネアクション3発動に必要ないいね数")]
-    [SerializeField] int goodCost3 = 100;
-    [Header("イイネアクション4発動に必要ないいね数")]
-    [SerializeField] int goodCost4 = 100;
+    [Header("イイネアクション1")]
+    [SerializeField] GoodActionParameters goodAction1;
+    [Header("イイネアクション2")]
+    [SerializeField] GoodActionParameters goodAction2;
+    [Header("イイネアクション3")]
+    [SerializeField] GoodActionParameters goodAction3;
+    [Header("イイネアクション4")]
+    [SerializeField] GoodActionParameters goodAction4;
 
     [Header("必要なコンポーネント")]
     [SerializeField] GoodSystem goodSystem;
@@ -29,19 +44,22 @@ public class GoodAction : MonoBehaviour
     int currentGoodPoint3 = 0;
     int currentGoodPoint4 = 0;
 
+    public GoodActionParameters GoodAction1Parameters { get { return goodAction1; } }
+    public GoodActionParameters GoodAction2Parameters { get { return goodAction2; } }
+    public GoodActionParameters GoodAction3Parameters { get { return goodAction3; } }
+    public GoodActionParameters GoodAction4Parameters { get { return goodAction4; } }
+
     public float CurrentGoodNum { get { return currentGoodNum; } }
 
-    public int GoodCost1 { get { return goodCost1; } }
-    public int GoodCost2 { get { return goodCost2; } }
-    public int GoodCost3 { get { return goodCost3; } }
-    public int GoodCost4 {  get { return goodCost4; } }
+    public int GoodCost1 { get { return goodAction1.GoodCost; } }
+    public int GoodCost2 { get { return goodAction2.GoodCost; } }
+    public int GoodCost3 { get { return goodAction3.GoodCost; } }
+    public int GoodCost4 {  get { return goodAction4.GoodCost; } }
 
     public int CurrentGoodPoint1 { get { return currentGoodPoint1; } }
     public int CurrentGoodPoint2 { get {  return currentGoodPoint2; } }
     public int CurrentGoodPoint3 { get {  return currentGoodPoint3; } }
-    public int CurrentGoodPoint4 { get {  return currentGoodPoint4; } }
-
-    
+    public int CurrentGoodPoint4 { get {  return currentGoodPoint4; } }    
 
     void Start()
     {
@@ -54,26 +72,23 @@ public class GoodAction : MonoBehaviour
 
         if (delta <= 0) return; //いいねが増えていない場合は何もしない
 
-        if (currentGoodPoint1 < goodCost1) currentGoodPoint1 += (int)delta;
-
-        if (currentGoodPoint2 < goodCost2) currentGoodPoint2 += (int)delta;
-
-        if (currentGoodPoint3 < goodCost3) currentGoodPoint3 += (int)delta;
-
-        if (currentGoodPoint4 < goodCost4) currentGoodPoint4 += (int)delta;
+        if (currentGoodPoint1 < goodAction1.GoodCost) currentGoodPoint1 += (int)delta;
+        if (currentGoodPoint2 < goodAction2.GoodCost) currentGoodPoint2 += (int)delta;
+        if (currentGoodPoint3 < goodAction3.GoodCost) currentGoodPoint3 += (int)delta;
+        if (currentGoodPoint4 < goodAction4.GoodCost) currentGoodPoint4 += (int)delta;
 
         //蓄積ポイントが上限を超えないように補正する
-        currentGoodPoint1 = Mathf.Min(currentGoodPoint1, goodCost1);
-        currentGoodPoint2 = Mathf.Min(currentGoodPoint2, goodCost2);
-        currentGoodPoint3 = Mathf.Min(currentGoodPoint3, goodCost3);
-        currentGoodPoint4 = Mathf.Min(currentGoodPoint4, goodCost4);
+        currentGoodPoint1 = Mathf.Min(currentGoodPoint1, goodAction1.GoodCost);
+        currentGoodPoint2 = Mathf.Min(currentGoodPoint2, goodAction2.GoodCost);
+        currentGoodPoint3 = Mathf.Min(currentGoodPoint3, goodAction3.GoodCost);
+        currentGoodPoint4 = Mathf.Min(currentGoodPoint4, goodAction4.GoodCost);
 
         currentGoodNum = goodSystem.GoodNum;
     }
 
     public void GoodAction1()
     {
-        if (currentGoodPoint1 < goodCost1) return;
+        if (currentGoodPoint1 < goodAction1.GoodCost) return;
 
         wideAttack.InstantiateWideRangeAttack();
         Debug.Log("イイネアクション1発動！");
@@ -82,7 +97,7 @@ public class GoodAction : MonoBehaviour
 
     public void GoodAction2()
     {
-        if (currentGoodPoint2 < goodCost2) return;
+        if (currentGoodPoint2 < goodAction2.GoodCost) return;
 
         longRangeAttack.ShotBeam();
         Debug.Log("イイネアクション2発動！");
@@ -91,7 +106,7 @@ public class GoodAction : MonoBehaviour
 
     public void GoodAction3()
     {
-        if (currentGoodPoint3 < goodCost3) return;
+        if (currentGoodPoint3 < goodAction3.GoodCost) return;
 
         continuosHitAttack.GenerateAttack();
         Debug.Log("イイネアクション3発動！");
@@ -100,7 +115,7 @@ public class GoodAction : MonoBehaviour
 
     public void GoodAction4()
     {
-        if (currentGoodPoint4 < goodCost4) return;
+        if (currentGoodPoint4 < goodAction4.GoodCost) return;
 
         explosionAttack.TriggerExplosions();
         Debug.Log("イイネアクション4発動！");

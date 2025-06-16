@@ -24,6 +24,6 @@ public class ControllerOfDodge : MonoBehaviour
     {
         if (!context.performed || cancelAction.IsPressed()) return;
 
-        dodge.TryDodge(); //‰ñ”ğˆ—‚ÌŒÄ‚Ño‚µ
+        PlayerActionEvents.DodgeEvent(); //‰ñ”ğ“ü—Í‚Ì’Ê’m
     }
 }
