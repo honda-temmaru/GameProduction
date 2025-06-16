@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7265270442427516671, guid: 776474c54ee821946bce51339996fb0d, type: 3}
-  shotPos: {fileID: 1256248359}
+  shotPos: {fileID: 845345380}
 --- !u!1 &837679868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1546,7 @@ Transform:
   m_GameObject: {fileID: 845345379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 2}
+  m_LocalPosition: {x: 0, y: 1.2, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2440,10 +2440,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55654083ce4744a46a51d1141b5dee54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodCost1: 50
-  goodCost2: 100
-  goodCost3: 150
-  goodCost4: 200
+  goodAction1:
+    goodCost: 50
+    actionInterval: 1
+    changeStateInterval: 2
+  goodAction2:
+    goodCost: 100
+    actionInterval: 1
+    changeStateInterval: 2
+  goodAction3:
+    goodCost: 150
+    actionInterval: 0.5
+    changeStateInterval: 1.5
+  goodAction4:
+    goodCost: 200
+    actionInterval: 1.2
+    changeStateInterval: 2
   goodSystem: {fileID: 8272935803192008037}
   wideAttack: {fileID: 1289444029}
   longRangeAttack: {fileID: 797087819}
@@ -2506,9 +2518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc602c1e50eae444a74a7d8b83c1bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1113225796}
   dodgeDuration: 0.5
-  dodgeInterval: 1
-  dodgeSpeed: 1.5
+  dodgeInterval: 0.5
+  dodgeSpeed: 20
 --- !u!1 &1186035185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,7 +2860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 5487005367828503272, guid: 81384557549cbf54cbcf9336d3de4c7a, type: 3}
-  expandValue: 0.05
   generatePos: {fileID: 1113225796}
 --- !u!1 &1303064749
 GameObject:
@@ -3399,8 +3411,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2423230904671489979, guid: dccfc3f5ae31bdc4b8ea7ca5cdd3e2c8, type: 3}
   shotPos: {fileID: 1256248359}
   bulletSpeed: 20
-  shotInterval: 0.25
+  chargeTime: 0.35
+  shotInterval: 0.1
   changeStateInterval: 0.5
+  canMovingShot: 0
 --- !u!1 &1585006556
 GameObject:
   m_ObjectHideFlags: 0

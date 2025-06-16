@@ -5,15 +5,19 @@ using UnityEngine;
 
 //作成者：桑原大悟
 
+[System.Serializable]
 public class GoodActionParameters
 {
     [Header("発動に必要ないいね数")]
     [SerializeField] int goodCost = 100;
     [Header("攻撃が発生するまでの時間")]
-    [SerializeField] float actionInterval = 0.5f;
+    [SerializeField] float actionInterval = 1f;
+    [Header("待機状態に移行するまでの時間")]
+    [SerializeField] float changeStateInterval = 2f;
 
     public int GoodCost { get { return goodCost; } }
     public float ActionInterval { get { return actionInterval;} }
+    public float ChangeStateInterval { get { return changeStateInterval;} }
 }
 
 public class GoodAction : MonoBehaviour
@@ -41,9 +45,9 @@ public class GoodAction : MonoBehaviour
     int currentGoodPoint4 = 0;
 
     public GoodActionParameters GoodAction1Parameters { get { return goodAction1; } }
-    public GoodActionParameters GoodAction2Parameters { get { return goodAction1; } }
-    public GoodActionParameters GoodAction3Parameters { get { return goodAction1; } }
-    public GoodActionParameters GoodAction4Parameters { get { return goodAction1; } }
+    public GoodActionParameters GoodAction2Parameters { get { return goodAction2; } }
+    public GoodActionParameters GoodAction3Parameters { get { return goodAction3; } }
+    public GoodActionParameters GoodAction4Parameters { get { return goodAction4; } }
 
     public float CurrentGoodNum { get { return currentGoodNum; } }
 

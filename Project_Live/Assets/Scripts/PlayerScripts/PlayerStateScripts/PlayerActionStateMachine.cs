@@ -5,14 +5,12 @@ using UnityEngine.XR;
 
 //作成者：桑原
 
-//イイネアクションが発動可能なら、発動時にイベントを通知する
-
 public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管理を行う
 {
     IPlayerState currentState;
-
     PlayerAnimationController anim;
 
+    [Header("必要なコンポーネント")]
     [SerializeField] PlayerAnimationController animController;
     [SerializeField] MovePlayer movePlayer;
     [SerializeField] CloseAttack closeAttack;
@@ -30,28 +28,28 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
 
     void OnEnable()
     {
-        PlayerInputEvents.OnIdleInput += OnIdleInput;
-        PlayerInputEvents.OnMoveInput += OnMoveInput;
-        PlayerInputEvents.OnCloseAttackInput += OnCloseAttackInput;
-        PlayerInputEvents.OnShotInput += OnShotInput;
-        PlayerInputEvents.OnDodgeInput += OnDodgeInput;
-        PlayerInputEvents.OnGoodAction1Input += OnGoodAction1Input;
-        PlayerInputEvents.OnGoodAction2Input += OnGoodAction2Input;
-        PlayerInputEvents.OnGoodAction3Input += OnGoodAction3Input;
-        PlayerInputEvents.OnGoodAction4Input += OnGoodAction4Input;
+        PlayerActionEvents.OnIdleEvent += OnIdleInput;
+        PlayerActionEvents.OnMoveEvent += OnMoveInput;
+        PlayerActionEvents.OnCloseAttackEvent += OnCloseAttackInput;
+        PlayerActionEvents.OnShotEvent += OnShotInput;
+        PlayerActionEvents.OnDodgeEvent += OnDodgeInput;
+        PlayerActionEvents.OnGoodAction1Event += OnGoodAction1Input;
+        PlayerActionEvents.OnGoodAction2Event += OnGoodAction2Input;
+        PlayerActionEvents.OnGoodAction3Event += OnGoodAction3Input;
+        PlayerActionEvents.OnGoodAction4Event += OnGoodAction4Input;
     }
 
     void OnDisable()
     {
-        PlayerInputEvents.OnIdleInput -= OnIdleInput;
-        PlayerInputEvents.OnMoveInput -= OnMoveInput;
-        PlayerInputEvents.OnCloseAttackInput -= OnCloseAttackInput;
-        PlayerInputEvents.OnShotInput -= OnShotInput;
-        PlayerInputEvents.OnDodgeInput -= OnDodgeInput;
-        PlayerInputEvents.OnGoodAction1Input -= OnGoodAction1Input;
-        PlayerInputEvents.OnGoodAction2Input -= OnGoodAction2Input;
-        PlayerInputEvents.OnGoodAction3Input -= OnGoodAction3Input;
-        PlayerInputEvents.OnGoodAction4Input -= OnGoodAction4Input;
+        PlayerActionEvents.OnIdleEvent -= OnIdleInput;
+        PlayerActionEvents.OnMoveEvent -= OnMoveInput;
+        PlayerActionEvents.OnCloseAttackEvent -= OnCloseAttackInput;
+        PlayerActionEvents.OnShotEvent -= OnShotInput;
+        PlayerActionEvents.OnDodgeEvent -= OnDodgeInput;
+        PlayerActionEvents.OnGoodAction1Event -= OnGoodAction1Input;
+        PlayerActionEvents.OnGoodAction2Event -= OnGoodAction2Input;
+        PlayerActionEvents.OnGoodAction3Event -= OnGoodAction3Input;
+        PlayerActionEvents.OnGoodAction4Event -= OnGoodAction4Input;
     }
 
     void Update()
@@ -64,7 +62,6 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
         currentState?.Exit();
         currentState = newState;
         currentState?.Enter();
-        //Debug.Log(currentState?.ToString());
     }
 
     void OnIdleInput()
@@ -91,22 +88,25 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is ShotState))
         {
-            ChangeState(new ShotState(anim, shotAttack));
+            ChangeState(new ShotState(anim, movePlayer, shotAttack));
         }
     }
 
     void OnDodgeInput()
     {
+        if (dodge.IntervalTimer < dodge.DodgeInterval) return;
+
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is DodgeState))
         {
-            //ChangeState(new DodgeState(anim, dodge));
+            ChangeState(new DodgeState(anim, movePlayer, dodge));
         }
     }
 
     void OnGoodAction1Input()
     {
-        //if (goodAction.)
+        if (goodAction.CurrentGoodPoint1 < goodAction.GoodAction1Parameters.GoodCost) return;
+
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction1State))
         {
@@ -116,6 +116,8 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
 
     void OnGoodAction2Input()
     {
+        if (goodAction.CurrentGoodPoint2 < goodAction.GoodAction2Parameters.GoodCost) return;
+
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction2State))
         {
@@ -125,6 +127,8 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
 
     void OnGoodAction3Input()
     {
+        if (goodAction.CurrentGoodPoint3 < goodAction.GoodAction3Parameters.GoodCost) return;
+
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction3State))
         {
@@ -134,6 +138,8 @@ public class PlayerActionStateMachine : MonoBehaviour //プレイヤーの行動状態の管
 
     void OnGoodAction4Input()
     {
+        if (goodAction.CurrentGoodPoint4 < goodAction.GoodAction4Parameters.GoodCost) return;
+
         if ((currentState is IdleState || currentState is MoveState)
             && !(currentState is GoodAction4State))
         {

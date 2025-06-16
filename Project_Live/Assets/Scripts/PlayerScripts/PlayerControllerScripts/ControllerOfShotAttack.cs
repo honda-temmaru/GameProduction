@@ -24,6 +24,7 @@ public class ControllerOfShotAttack : MonoBehaviour
     {
         if (!context.performed || cancelAction.IsPressed()) return;
 
-        PlayerInputEvents.ShotInput();
+        PlayerActionEvents.ShotEvent();
+        shotAttack.TryShot();
     }
 }

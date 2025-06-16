@@ -13,6 +13,6 @@ public class LongRangeAttack : MonoBehaviour
 
     public void ShotBeam()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shotPos.transform.position, shotPos.transform.rotation);
+        Instantiate(bulletPrefab, shotPos.transform.position, shotPos.transform.rotation);
     }
 }

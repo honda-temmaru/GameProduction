@@ -25,6 +25,6 @@ public class ControllerOfCloseAttack : MonoBehaviour
         if (!context.performed || cancelAction.IsPressed()) return;
 
         closeAttack.TryAttack(); //‹ßÚUŒ‚ˆ—‚ÌŒÄ‚Ño‚µ       
-        PlayerInputEvents.CloseAttackInput(); //ˆ—‚ªŒÄ‚Î‚ê‚½‚±‚Æ‚ğ’Ê’m‚·‚é
+        PlayerActionEvents.CloseAttackEvent(); //ˆ—‚ªŒÄ‚Î‚ê‚½‚±‚Æ‚ğ’Ê’m‚·‚é
     }
 }

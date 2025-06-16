@@ -18,7 +18,7 @@ public class ControllerOfMove : MonoBehaviour
         if (isMovingInput && currentMoveVec != Vector3.zero)
         {
             movePlayer.GetMoveVector(currentMoveVec);
-            PlayerInputEvents.MoveInput();
+            PlayerActionEvents.MoveEvent();
         }
     }
 
@@ -32,7 +32,7 @@ public class ControllerOfMove : MonoBehaviour
 
         movePlayer.GetMoveVector(currentMoveVec); //プレイヤーの移動スクリプトに値を渡す
 
-        PlayerInputEvents.MoveInput(); //入力の通知
+        PlayerActionEvents.MoveEvent(); //入力の通知
     }
 
     public void OnMoveCanceled(InputAction.CallbackContext context)

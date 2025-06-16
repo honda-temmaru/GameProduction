@@ -10,22 +10,11 @@ public class IdleState : IPlayerState
 
     public IdleState(PlayerAnimationController anim)
     {
-        if (anim == null)
-        {
-            Debug.Log("error");
-            return;
-        }
-
         this.anim = anim;
     }
 
     public void Enter()
     {
-        if (anim == null)
-        {
-            Debug.Log("missEnter");
-            return;
-        }
         //Debug.Log("ë“ã@èÛë‘Ç…à⁄çs");
         anim.PlayIdle();
 

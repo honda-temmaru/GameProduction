@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//ì¬ÒFŒKŒ´
+
 public class MoveState : IPlayerState
 {
     PlayerAnimationController anim;

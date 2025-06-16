@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//ì¬ÒFŒKŒ´
+
 public class CloseAttackState : IPlayerState
 {
     PlayerAnimationController anim;
@@ -20,7 +22,6 @@ public class CloseAttackState : IPlayerState
 
     public void Enter()
     {
-        anim.ResetAllParameters();
         //Debug.Log("‹ßÚUŒ‚ó‘Ô‚ÉˆÚs");
     }
 
@@ -46,7 +47,6 @@ public class CloseAttackState : IPlayerState
 
     public void Exit()
     {
-        //anim.PlayIdle();
         //Debug.Log("‹ßÚUŒ‚ó‘Ô‚ğI—¹");
     }
 

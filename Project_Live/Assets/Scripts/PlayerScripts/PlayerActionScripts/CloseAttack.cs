@@ -144,7 +144,7 @@ public class CloseAttack : MonoBehaviour
 
         //Debug.Log(currentComboIndex + "コンボのリセット");
         currentComboIndex = 0;
-        PlayerInputEvents.IdleInput();
+        PlayerActionEvents.IdleEvent();
     }
 
     float GetCurrentComboResetTime() //次のコンボ段階までの猶予時間の取得
