@@ -21,7 +21,7 @@ public class DamageToTarget : MonoBehaviour
         if (enemyStatus == null) return;
 
         enemyStatus.Hp -= damage;
-        Debug.Log(damage + "ダメージを与えた");
+        //Debug.Log(damage + "ダメージを与えた");
     }
 
     public void ApplyKnockback(GameObject enemy) //吹き飛ぶ力を加える

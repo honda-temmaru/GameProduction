@@ -24,6 +24,7 @@ public class ControllerOfShotAttack : MonoBehaviour
     {
         if (!context.performed || cancelAction.IsPressed()) return;
 
-        shotAttack.ShotBullet();
+        PlayerActionEvents.ShotEvent();
+        shotAttack.TryShot();
     }
 }

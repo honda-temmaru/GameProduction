@@ -11,6 +11,6 @@ public class ContinuosHitAttack : MonoBehaviour
 
     public void GenerateAttack()
     {
-        GameObject bullet = Instantiate(hitboxPrefab, generatePos.transform.position, generatePos.transform.rotation);
+        Instantiate(hitboxPrefab, generatePos.transform.position, generatePos.transform.rotation);
     }
 }

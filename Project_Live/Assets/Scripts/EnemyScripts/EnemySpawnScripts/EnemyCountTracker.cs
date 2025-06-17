@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Scripting;
 using UnityEngine;
 
 public class EnemyCountTracker
@@ -17,8 +18,11 @@ public class EnemyCountTracker
     {
         currentCount = EnemyRegistry.GetCount(enemyType);
 
+        //Debug.Log(enemyType + ":" + currentCount);
+
         if (currentCount != prev_Count)
         {
+            //Debug.Log(enemyType + "‚Ì”‚ª•Ï‰»‚µ‚½");
             prev_Count = currentCount;
             return true;
         }

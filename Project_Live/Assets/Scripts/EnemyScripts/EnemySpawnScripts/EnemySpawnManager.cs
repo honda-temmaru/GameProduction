@@ -39,16 +39,14 @@ public class EnemySpawnManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer < checkInterval) return;
-
-        timer = 0f;
-
         foreach (var param in spawnParameters)
         {
             var tracker = trackers[param.enemyType];
 
-            if (tracker.HasChanged(out int currentCount)) //’²‚×‚½í—Ş‚Ì“G‚Ì”‚ª­‚È‚­‚È‚Á‚Ä‚¢‚½‚ç
+            if (timer >= checkInterval && tracker.HasChanged(out int currentCount)) //’²‚×‚½í—Ş‚Ì“G‚Ì”‚ª­‚È‚­‚È‚Á‚Ä‚¢‚½‚ç
             {
+                timer = 0f;
+
                 int toSpawn = param.maxSpawnCount - currentCount; //‚»‚Ìí—Ş‚Ì“G‚ÌÅ‘å“¯oŒ»”‚ÆŒ»İ‚Ì”‚Æ‚Ì·•ª‚ğ‹‚ß‚é
 
                 if (toSpawn >= 0) spawners[param.enemyType].SpawnEnemies(toSpawn); //­‚È‚¢•ª‚¾‚¯“G‚ğ¶¬‚·‚é
