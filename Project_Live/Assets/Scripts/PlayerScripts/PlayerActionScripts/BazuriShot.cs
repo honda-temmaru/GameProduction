@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class BazuriShot : MonoBehaviour// バズリショットモードの切り替えの管理
 {
     [SerializeField] PlayerInput playerInput;
+    [Header("プレイヤー")]
+    [SerializeField] Transform player;
     [Header("メインのカメラ")]
     [SerializeField] GameObject mainCamera;
     [Header("バズリショットの際に操作するカメラ")]
@@ -24,7 +26,7 @@ public class BazuriShot : MonoBehaviour// バズリショットモードの切り替えの管理
     [Header("スロー時のゲーム速度(1未満じゃないとスローにならない)")]
     [SerializeField] float slowSpeed;
 
-    [SerializeField] Transform defaultPos;
+  
     private bool isBazuri = false;
     public bool IsBazuri
     {
@@ -35,7 +37,7 @@ public class BazuriShot : MonoBehaviour// バズリショットモードの切り替えの管理
     private void Start()
     {
         bazuriCamera.SetActive(false);
-        defaultPos=bazuriCamera.transform;
+       
     }
 
     private void Update()
@@ -46,11 +48,13 @@ public class BazuriShot : MonoBehaviour// バズリショットモードの切り替えの管理
             if (count >= cameraTime)
             {
                 isBazuri = false;
-                mainCamera.SetActive(true);
+                mainCamera.SetActive(true); 
                 bazuriCamera.SetActive(false);
                 Time.timeScale = 1;
                 playerInput.SwitchCurrentActionMap("Player");
-                bazuriCamera.transform.position = defaultPos.position;
+                bazuriCamera.transform.localPosition = Vector3.zero;
+                bazuriCamera.transform.rotation =new  Quaternion(0, 0, 0,0);
+
                 count = 0;
 
             }
@@ -65,6 +69,6 @@ public class BazuriShot : MonoBehaviour// バズリショットモードの切り替えの管理
         bazuriCamera.SetActive(true);
         Time.timeScale = slowSpeed;
         playerInput.SwitchCurrentActionMap("Bazuri");
-
+        bazuriCamera.transform.LookAt(player) ;
     }
 }

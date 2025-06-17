@@ -41,7 +41,7 @@ public class BazuriCameraMove : MonoBehaviour
     {
         if(bazuri.IsBazuri) {
             cameraYaw += lookInput.x * lookSpeed;
-            cameraXaw += lookInput.y * lookSpeed;
+            cameraXaw += -lookInput.y * lookSpeed;
             Mathf.Clamp(cameraXaw, 90, -90);
             bazuri.BazuriCamera.transform.rotation = Quaternion.Euler(cameraXaw,cameraYaw,0);
            

@@ -708,6 +708,17 @@
                     "action": "BazuriShot",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "b941850d-8c5f-4c49-90ce-7e0a9fb570f4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BazuriShot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
