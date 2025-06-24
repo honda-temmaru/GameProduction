@@ -13,27 +13,27 @@ public class ControllerOfGoodAction : MonoBehaviour
     {
         if (!context.performed) return;
 
-        goodAction.GoodAction1(); //イイネアクション1の呼び出し
+        PlayerActionEvents.GoodAction1Event(); //イイネアクション1の呼び出し
     }
 
     public void CallGoodAction2(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        goodAction.GoodAction2(); //イイネアクション2の呼び出し
+        PlayerActionEvents.GoodAction2Event(); //イイネアクション2の呼び出し
     }
 
     public void CallGoodAction3(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        goodAction.GoodAction3(); //イイネアクション3の呼び出し
+        PlayerActionEvents.GoodAction3Event(); //イイネアクション3の呼び出し
     }
 
     public void CallGoodAction4(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        goodAction.GoodAction4(); //イイネアクション4の呼び出し
+        PlayerActionEvents.GoodAction4Event(); //イイネアクション4の呼び出し
     }
 }

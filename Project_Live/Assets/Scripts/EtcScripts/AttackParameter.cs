@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AttackParameter : MonoBehaviour
+{
+    [Header("基本ダメージ")]
+    [SerializeField] float baceDamage = 5f;
+    [Header("基本となる前方向への吹き飛ばし力")]
+    [SerializeField] float baceForwardKnockbackForce = 1f;
+    [Header("基本となる上方向への吹き飛ばし力")]
+    [SerializeField] float baceUpwardKnockbackForce = 1f;
+    [Header("取得するコンポーネントのオブジェクト名")]
+    [SerializeField] string objectName = "PlayerStatus";
+    [Header("必要なコンポーネント")]
+    [SerializeField] DamageToTarget damageToTarget;
+
+    GameObject player;
+    PlayerStatus status;
+
+    void Start()
+    {
+        player = GameObject.Find(objectName);
+
+        if (player != null) status = player.GetComponent<PlayerStatus>();
+
+        if (status != null) SetParameters();
+    }
+
+    void SetParameters() //ダメージ、吹き飛ばし力を設定する
+    {
+        damageToTarget.Damage = GetDamage();
+        damageToTarget.ForwardKnockbackForce = GetForwardForce();
+        damageToTarget.UpwardKnockbackForce = GetUpwardForce();
+    }
+
+    float GetDamage() //最終的なダメージ量を取得する
+    {
+        return player != null ? baceDamage * status.AttackPower : baceDamage;
+    }
+
+    float GetForwardForce() //最終的な上方向への吹き飛ばし力を取得する
+    {
+        return player != null ? baceForwardKnockbackForce * status.AttackPower : baceForwardKnockbackForce;
+    }
+
+    float GetUpwardForce() //最終的な前方向への吹き飛ばし力を取得する
+    {
+        return player != null ? baceUpwardKnockbackForce * status.AttackPower : baceUpwardKnockbackForce;
+    }
+}

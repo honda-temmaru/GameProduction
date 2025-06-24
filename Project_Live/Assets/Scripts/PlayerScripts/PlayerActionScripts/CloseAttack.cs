@@ -7,19 +7,21 @@ using UnityEngine;
 [System.Serializable]
 class ComboStep
 {
-    [Header("この段の攻撃判定用オブジェクト")]
+    [Header("攻撃判定用オブジェクト")]
     [SerializeField] public GameObject hitbox;
-    [Header("この攻撃が与える基本ダメージ")]
+    [Header("基本ダメージ")]
     [SerializeField] public float baseDamage = 10f;
-    [Header("この攻撃が敵を吹き飛ばす力")]
-    [SerializeField] public float knockbackForce = 10f;
+    [Header("前方向への基本の吹き飛ばし力")]
+    [SerializeField] public float baceForwardKnockbackForce = 1f;
+    [Header("上方向への基本の吹き飛ばし力")]
+    [SerializeField] public float baceUpwardKnockbackForce = 1f;
     [Header("当たり判定の持続時間")]
     [SerializeField] public float attackDuration = 0.2f;
     [Header("攻撃判定消滅後、次の段に移行可能な猶予時間")]
     [SerializeField] public float comboResetTime = 1f;
     [Header("入力受け付後から攻撃までの時間")]
     [SerializeField] public float windupTime = 0.2f;
-    [Header("この段の攻撃時に移動する距離")]
+    [Header("攻撃時に移動する距離")]
     [SerializeField] public float attackMoveDistance = 1f;
 }
 
@@ -32,7 +34,7 @@ public class CloseAttack : MonoBehaviour
 
     [Header("必要なコンポーネント")]
     [SerializeField] PlayerStatus playerStatus;
-    [SerializeField] DamageToEnemy damageToEnemy;
+    [SerializeField] DamageToTarget damageToTarget;
     [SerializeField] MovePlayer movePlayer;
 
     public enum AttackState { None, Windup, Attacking, Recovering }
@@ -48,6 +50,7 @@ public class CloseAttack : MonoBehaviour
     float totalMoveDistance = 0f;
 
     public AttackState CurrentAttackState { get { return attackState; } private set { attackState = value; } }
+    public int CurrentComboIndex { get { return currentComboIndex; } }
 
     public void TryAttack() //攻撃処理（近接攻撃ボタンを押したときに呼ばれる）
     {
@@ -55,7 +58,7 @@ public class CloseAttack : MonoBehaviour
 
         isAttackBuffered = true;
         movePlayer.MoveSpeedMultiplier = 0f; //移動を制限
-        stateTimer = 0f;
+        //stateTimer = 0f;
         attackState = AttackState.Windup;
 
         ComboStep step = comboSteps[currentComboIndex];
@@ -65,7 +68,7 @@ public class CloseAttack : MonoBehaviour
         //Debug.Log(currentComboIndex + 1 + "段目");
     }
 
-    void Update()
+    public void CloseAttackProcess()
     {
         stateTimer += Time.deltaTime;
 
@@ -87,19 +90,23 @@ public class CloseAttack : MonoBehaviour
                 if (Time.time - lastAttackTime > GetCurrentComboResetTime())
                     ResetCombo();
                 break;
+
+            case AttackState.None:
+                break;
         }
-    }    
+    }
 
     void BeginAttack() //攻撃開始時の処理
     {
         ComboStep step = comboSteps[currentComboIndex];
 
-        damageToEnemy.Damage = GetCurrentDamage(); //与えるダメージの代入
-        damageToEnemy.KnockbackForce = step.knockbackForce; //吹き飛ばす力の代入
+        damageToTarget.Damage = GetCurrentDamage(); //与えるダメージの代入
+        damageToTarget.ForwardKnockbackForce = GetCurrentForwardForce(); //前方向へ吹き飛ばす力の代入
+        damageToTarget.UpwardKnockbackForce = GetCurrentUpwardForce(); //上方向へ吹き飛ばす力の代入
 
-        if (step.hitbox != null) step.hitbox.SetActive(true);
+        if (step.hitbox != null) step.hitbox.SetActive(true); //攻撃判定の有効化
 
-        movePlayer.RotationSpeedMultiplier = 0f;
+        movePlayer.RotationSpeedMultiplier = 0f; //プレイヤーの回転スピードの制御
         
         stateTimer = 0f;
         attackState = AttackState.Attacking;
@@ -111,7 +118,7 @@ public class CloseAttack : MonoBehaviour
     {
         ComboStep step = comboSteps[currentComboIndex];
 
-        if (step.hitbox != null) step.hitbox.SetActive(false);
+        if (step.hitbox != null) step.hitbox.SetActive(false); //攻撃判定の無効化
 
         movePlayer.RotationSpeedMultiplier = 1f;
 
@@ -137,6 +144,7 @@ public class CloseAttack : MonoBehaviour
 
         //Debug.Log(currentComboIndex + "コンボのリセット");
         currentComboIndex = 0;
+        PlayerActionEvents.IdleEvent();
     }
 
     float GetCurrentComboResetTime() //次のコンボ段階までの猶予時間の取得
@@ -168,6 +176,26 @@ public class CloseAttack : MonoBehaviour
         ComboStep step = comboSteps[currentComboIndex];
         float attackPower = playerStatus != null ? playerStatus.AttackPower : 1f;
 
-        return step.baseDamage * attackPower; //現在の段の基本ダメージとプレイヤーの攻撃力から最終ダメージを乗算
+        return step.baseDamage * attackPower; //最終的なダメージ量を返す
+    }
+
+    float GetCurrentForwardForce() //現在の攻撃の前方向への吹き飛ばし力を取得する
+    {
+        if (currentComboIndex >= comboSteps.Count || currentComboIndex < 0) return 0f;
+
+        ComboStep step = comboSteps[currentComboIndex];
+        float attackPower = playerStatus != null ? playerStatus.AttackPower : 1f;
+
+        return step.baceForwardKnockbackForce * attackPower; //最終的な前方向への吹き飛ばし力を返す
+    }
+
+    float GetCurrentUpwardForce() //現在の攻撃の上方向への吹き飛ばし力を取得する
+    {
+        if (currentComboIndex >= comboSteps.Count || currentComboIndex < 0) return 0f;
+
+        ComboStep step = comboSteps[currentComboIndex];
+        float attackPower = playerStatus != null ? playerStatus.AttackPower : 1f;
+
+        return step.baceUpwardKnockbackForce * attackPower; //最終的な前方向への吹き飛ばし力を返す
     }
 }

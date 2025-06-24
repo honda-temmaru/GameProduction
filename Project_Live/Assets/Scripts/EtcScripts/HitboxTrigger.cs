@@ -6,33 +6,63 @@ using UnityEngine;
 
 public class HitboxTrigger : MonoBehaviour
 {
+    [Header("命中判定を行う対象のタグ")]
     [SerializeField] string targetTag = "Enemy";
-    [SerializeField] DamageToEnemy damageToEnemy;
+    [Header("命中を判定する回数")]
+    [SerializeField] int MaxHitCount = 1;
+    [Header("命中判定を行う時間の間隔")]
+    [SerializeField] float hitIntervalTime = 0.5f;
 
-    HashSet<Collider> hitTargets = new HashSet<Collider>();
+    [Header("必要なコンポーネント")]
+    [SerializeField] DamageToTarget damageToTarget;
 
-    private void OnTriggerEnter(Collider other)
+    //敵ごとの最後に攻撃が当たってからの経過時間
+    Dictionary<Collider, float> hitIntervalTimers = new Dictionary<Collider, float>();
+    
+    //敵ごとの今まで攻撃が命中した回数
+    Dictionary<Collider, int> hitCounts = new Dictionary<Collider, int>();
+
+    void Update() //経過時間の更新
     {
-        if (other.CompareTag(targetTag) && !hitTargets.Contains(other))
+        var keys = new List<Collider>(hitIntervalTimers.Keys);
+
+        foreach (var col in keys)
+            hitIntervalTimers[col] += Time.deltaTime;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (!other.CompareTag(targetTag)) return;
+
+        if (!hitCounts.ContainsKey(other)) //初めて攻撃が命中した敵なら
         {
-            if (damageToEnemy != null)
-            {
-                damageToEnemy.TakeDamage(other.gameObject); //ダメージ処理
-                damageToEnemy.ApplyKnockback(other.gameObject); //吹き飛び処理
-            }
+            hitCounts[other] = 0; //命中回数のリセット
+            hitIntervalTimers[other] = hitIntervalTime; //経過時間のリセット
+        }
+
+        if (hitCounts[other] >= MaxHitCount) return; //命中回数を制限する
+
+        if (hitIntervalTimers[other] >= hitIntervalTime) //ヒット可能な時間が経過していた場合
+        {
+   　       damageToTarget?.TakeDamage(other.gameObject); //ダメージ処理
+            damageToTarget?.ApplyKnockback(other.gameObject); //吹き飛び処理
+
+            hitIntervalTimers[other] = 0f; //攻撃命中後の経過時間をリセットする
+            hitCounts[other]++; //現在のヒット回数を増やす
 
             //Debug.Log("命中");
-            hitTargets.Add(other);
         }
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
+        //Debug.Log(currentHitCount + "ヒット");
         ResetHits();
     }
 
     public void ResetHits()
     {
-        hitTargets.Clear();
+        hitCounts.Clear();
+        hitIntervalTimers.Clear();
     }
 }

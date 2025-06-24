@@ -34,7 +34,7 @@ public class MovePlayer : MonoBehaviour
     public float MoveSpeedMultiplier { get { return moveSpeedMultiplier; } set { moveSpeedMultiplier = value; } }
     public float RotationSpeedMultiplier { get { return rotateSpeedMultiplier; } set {  rotateSpeedMultiplier = value; } }
 
-    void Update()
+    public void MoveProcess() //ˆÚ“®ó‘Ô‚ÌˆÚ“®ˆ—
     {
         prev_Move = move; //ˆÚ“®‚Ì’l‚ğ•Û‘¶
 
@@ -42,10 +42,25 @@ public class MovePlayer : MonoBehaviour
         {
             CalculateMoveDirection();
             RotateTransform();
-            MoveTransform();           
+            MoveTransform();
+        }
+
+        else if (move == prev_Move)
+        {
+            PlayerActionEvents.IdleEvent();
         }
 
         prev_Position = target.position; //Œ»İ’n“_‚ğ•Û‘¶
+    }
+
+    public void MoveProcess_AnyAttackState() //UŒ‚ó‘Ô‚ÌˆÚ“®ˆ—
+    {
+        if (move.magnitude > 0.1f) //ˆÚ“®‚Ì“ü—Í‚ª‚ ‚Á‚½‚ç
+        {
+            CalculateMoveDirection();
+            RotateTransform();
+            MoveTransform();
+        }
     }
 
     void CalculateMoveDirection() //ˆÚ“®•ûŒü‚ÌŒvZ
@@ -55,7 +70,7 @@ public class MovePlayer : MonoBehaviour
 
     void MoveTransform() //ˆÚ“®ˆ—
     {    
-        target.transform.position += moveDirection * (speed + dodge.AddDodgeSpeed()) * moveSpeedMultiplier * status.Agility * Time.deltaTime;
+        target.transform.position += moveDirection * speed * moveSpeedMultiplier * status.Agility * Time.deltaTime;
     }
 
     void RotateTransform() //‰ñ“]ˆ—
